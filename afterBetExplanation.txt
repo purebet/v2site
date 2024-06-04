@@ -1,0 +1,14 @@
+afterBet.js contains the code for properly updating pending bets after a bet is placed by the user
+@param result, the object returned by placeBet in bet.js
+
+addBet() adds a pending bet to the list of the user's pending bets
+refreshData() gets all of the pending bets for the user. 
+
+Some bets, like those in result.showNow, can be added immediately. Right now showNow is always empty.
+result.listen can't be added immediately, and is only added after the connection.onAccountChange websocket triggers. 
+Both of these situations require information about what the user is betting on from what they clicked
+refreshData() doesn't require this
+
+dispatch() likely won't be needed in v2 but in case there is a need to store some sort of state that the bet has been placed, that line shows you that this is the place to store it.
+
+

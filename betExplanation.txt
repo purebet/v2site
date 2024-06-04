@@ -31,6 +31,7 @@ placeBet()
     connection is an object that should come from solana wallet adapter, but I'm not 100% sure
     below is how to initialize it if needed
     var connection = new solanaWeb3.Connection(process.env.REACT_APP_RPC_URL, "confirmed");
+@param: in the future, some other info from the API may need to be passed in as a parameter as well. 
 @return: output, an object with the attributes:
     showNow: information on bets that should be shown immediately, a list of objects each with the attributes of pending bets
     listen: string, address of bet to listen to for when it is confirmed to be placed
