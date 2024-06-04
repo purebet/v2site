@@ -1,0 +1,49 @@
+The @solana/web3.js package is required for solana related functionality
+
+Solana has a devnet for testing and a mainnet for production
+The site can be set to use either with a .env variable
+If handling both devnet and mainnet is too hard, the v2 site can have just mainnet
+
+wallet.publicKey is the user's public key, from solana wallet adapter
+
+placeBet()
+@param: idObj, comes from the API response, an object with the attributes:
+    sport: number
+    league: number
+    event: number
+    period: number
+    mkt: number
+    player: string
+@param: betInfo, comes from what the user enters into the betslip and/or the odds that the user clicks on
+    object with the attributes:
+    userStake: number, amount to bet in usdc
+    side: 0 or 1, should be obtained from what the user clicks to populate the betslip
+    odds: number, the odds that the user wants
+    isLay: boolean, true if the user is betting on a soccer outcome to not happen
+@param: addrs, comes from solana wallet adapter, an object with the attributes:
+    bettor: solanaWeb3.PublicKey object, the connected address of the bettor
+    usdcATA: solanaWeb3.PublicKey object, the usdcATA of the bettor from getUSDCBalance() in balances.js
+@param: fixtures, comes from what the user clicks on to bet, object with the attributes:
+    selectionName: string, description of what the user is betting on, examples: Houston Astros, Over 8, Houston Astros +1.5
+    event: string, the event name that the user is betting on, ex: Houston Astros vs. NY Yankees
+    in the future, there will also be an attribute isParlay, which is set to true if multiple selections are present
+@param: connection, a solanaWeb3.Connection object
+    connection is an object that should come from solana wallet adapter, but I'm not 100% sure
+    below is how to initialize it if needed
+    var connection = new solanaWeb3.Connection(process.env.REACT_APP_RPC_URL, "confirmed");
+@return: output, an object with the attributes:
+    showNow: information on bets that should be shown immediately, a list of objects each with the attributes of pending bets
+    listen: string, address of bet to listen to for when it is confirmed to be placed
+description: placeBet genTx to build the transaction, or makes an API call for the transaction if needed. 
+    Right now the API call in line 143 is not implemented .
+    In the future, it will also make a separate API call for parlay bets when fixtures has isParlay set to true
+    It then handles sending the transaction and passing on the necessary info to handle after bet functionality
+    It also handles errors and shows messages. These will likely be different in v2 but that code is there to give you an idea of what placeBet does.
+
+genTx()
+@param: the same parameters as placeBet
+@return: an object with parameters:
+    tx: a solanaWeb3.Transaction object for the user to sign 
+    listen: string, the address of the bet to listen to for updates
+description: All other functions in bet.js except for placeBet() are subroutines of genTx(). 
+    This function doesn't affect much frontend stuff. 
