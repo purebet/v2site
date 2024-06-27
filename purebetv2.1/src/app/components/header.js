@@ -19,7 +19,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
 
       </button>
       
-      <div className="text-xl font-bold"><Image width={60} height={50} src="/pure.svg"/></div>
+      <div className="text-xl font-bold"><img width={60} height={50} src="/pure.svg"/></div>
 
 <div className='flex justify-center items-center'>
 <div className='hidden md:block' ><Image width={20} height={20} src='/warning.svg' /> </div>
