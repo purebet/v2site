@@ -9,7 +9,8 @@ import { IoWallet } from "react-icons/io5";
 
 const Header = ({ toggleSidebar, isSidebarOpen }) => {
   return (
-    <header className={`flex mb-2 m-4 rounded-xl   border-2 border-[#222222] items-center justify-between p-4 bg-black text-white ${isSidebarOpen ? 'hidden md:flex' : 'flex'}`}>
+    
+    <div className={`flex mb-2 m-4 rounded-xl   border-2 border-[#222222] items-center justify-between p-4 bg-black text-white ${isSidebarOpen ? 'hidden md:flex' : 'flex'}`}>
       <button 
         className="md:hidden flex text-2xl focus:outline-none" 
         onClick={toggleSidebar}
@@ -32,7 +33,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
       </button>
 
       </div>
-    </header>
+    </div>
   );
 };
 
