@@ -25,7 +25,7 @@ html {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color:black;
   background: linear-gradient(
       to bottom,
       transparent,
@@ -38,4 +38,8 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
