@@ -1,33 +1,42 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 import Sidebar from "../../components/sidebar";
 import Header from "../../components/header";
-import Avsports from './avsports';
-import WalletDataCard from "../../components/walletdatacard"
+import Avsports from './sports';
+import Home from './home'; // import the Home component
+import WalletDataCard from "../../components/walletdatacard";
+
 export default function Component() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const path = usePathname();
 
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
-    const toggleSidebar = () => {
-      setIsSidebarOpen(!isSidebarOpen);
-    };
+  const renderMainContent = () => {
+    if (path.includes("home")) {
+      return <Home />;
+    } else {
+      return <Avsports />;
+    }
+  };
 
-
-    return (
-        <div className='bg-black min-h-screen'>
+  return (
+    <div className='bg-black min-h-screen'>
       <Header toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
 
       <div className='flex'>
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <div className={`flex-1 ${isSidebarOpen ? 'hidden lg:block' : 'block'}`}>
-          <Avsports />
+          {renderMainContent()}
         </div>
         <div className={` hidden md:block lg:block`}>
-        <WalletDataCard />
+          <WalletDataCard />
         </div>
       </div>
     </div>
-    )
-  }
-  
+  );
+}

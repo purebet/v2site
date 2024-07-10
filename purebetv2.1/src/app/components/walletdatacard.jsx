@@ -44,7 +44,7 @@ export default function WalletDataCard() {
   }, [publicKey]);
 
   return (
-    <div className="flex flex-col px-3.5 pt-3.5 pb-20 rounded-lg border border-solid bg-neutral-950 border-neutral-800 max-w-[271px]">
+    <div className="flex flex-col md:mr-4 px-3.5 pt-3.5 pb-20 rounded-lg border border-solid bg-neutral-950 border-neutral-800 max-w-[271px]">
       {connected ? (
         <>
           <div className="flex gap-2.5">
