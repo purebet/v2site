@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Sidebar from "../../components/sidebar";
 import Header from "../../components/header";
 import Avsports from './avsports';
-
+import WalletDataCard from "../../components/walletdatacard"
 export default function Component() {
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -22,6 +22,9 @@ export default function Component() {
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <div className={`flex-1 ${isSidebarOpen ? 'hidden lg:block' : 'block'}`}>
           <Avsports />
+        </div>
+        <div className={` hidden md:block lg:block`}>
+        <WalletDataCard />
         </div>
       </div>
     </div>
