@@ -12,14 +12,14 @@ const WalletContext = createContext();
 export const useWallet = () => useContext(WalletContext);
 
 export const WalletProviderComponent = ({ children }) => {
-  const network = WalletAdapterNetwork.Devnet;
+  const network = WalletAdapterNetwork.Mainnet;
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 
   const particleAdapter = new ParticleAdapter({
     config: {
         projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
       clientKey: process.env.NEXT_PUBLIC_CLIENT_KEY,
-      appId: process.env.NEXT_PUBLIC_APP_ID,
+      appId: "cb56f837-593a-41cf-8da5-ca9321c38f6e",
     },
   });
 

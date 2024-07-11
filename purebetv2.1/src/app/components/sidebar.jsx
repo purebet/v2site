@@ -51,7 +51,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   return (
     // <div className={`fixed inset-0 bg-black bg-opacity-75 `}>
 
-    <div        ref={sidebarRef}  className={`w-64 h-screen md:relative border-2 border-[#222222] md:ml-4  bg-[#000000] rounded-lg font-inter text-white flex flex-col md:translate-x-0  z-50 transform ${isOpen ? 'translate-x-0' : '-translate-x-full hidden md:flex'} transition-transform duration-300 ease-in-out`}>
+    <div        ref={sidebarRef}  className={`w-64  h-screen md:relative border-2 border-[#222222] md:ml-4  bg-[#000000] rounded-lg font-inter text-white flex flex-col md:translate-x-0  z-50 transform ${isOpen ? 'translate-x-0' : '-translate-x-full hidden md:flex'} transition-transform duration-300 ease-in-out`}>
      <div className="p-4 flex items-center relative">
   <input 
     type="text" 

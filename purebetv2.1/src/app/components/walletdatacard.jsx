@@ -24,7 +24,7 @@ export default function WalletDataCard() {
 
   useEffect(() => {
     if (publicKey) {
-      const connection = new Connection(clusterApiUrl('devnet'));
+      const connection = new Connection(clusterApiUrl('mainnet-beta'));
 
       // Fetch SOL balance
       connection.getBalance(publicKey).then(balance => {
