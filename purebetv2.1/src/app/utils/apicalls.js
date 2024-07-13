@@ -36,6 +36,7 @@ export const search = async (query) => {
 export const getNextEvents = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/events/next`);
+    console.log(response.data)
     return response.data;
   } catch (error) {
     console.error('Error fetching next events:', error);

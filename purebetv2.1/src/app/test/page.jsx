@@ -12,7 +12,12 @@ useConnectKit
 } from '@particle-network/connect-react-ui';
 import {Solana, SolanaDevnet } from '@particle-network/chains'
 import { solanaWallets } from '@particle-network/connect'
-import {Connection, PublicKey } from '@solana/web3.js'
+import {
+  clusterApiUrl,
+  Connection,
+  PublicKey,
+  LAMPORTS_PER_SOL,
+} from "@solana/web3.js";
 import bs58 from 'bs58';
 // import './App.css';
 import '@particle-network/connect-react-ui/dist/index.css'
@@ -61,10 +66,16 @@ return (
 
 
     const getBalance = async  ( )=> {
-        const connection = new Connection ("https://api.mainnet-beta.solana.com");
+        const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
         const phantomProvider = getProvider();
         const address = phantomProvider?.isPhantom ? phantomProvider?.publicKey.toString(): await connectKit.particle.solana.getAddress();
+        console.log(address)
         const balance = await connection.getBalance(new PublicKey(address));
+        // let wallet = new PublicKey("G2FAbFQPFa5qKXCetoFZQEvF9BVvCKbvUZvodpVidnoY");
+        // console.log(
+        //   `${(await connection.getBalance(wallet)) / LAMPORTS_PER_SOL} SOL`,
+        // );
+        console.log(`${(balance) / LAMPORTS_PER_SOL} SOL` )
         // notification.success({
         // message: "getBalance successful",
         // description: 'Balance: ${balance / 1e9} SOL',
