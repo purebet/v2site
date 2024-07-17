@@ -32,15 +32,5 @@ export const matches = [
         team2: 4.58,
       },
     },
-    {
-      imgSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/35f32e86b2d5028294ccd36f11a3bf91d9e797cc402266ca0551af7cc6927b4e?apiKey=d1ee9f6275604677bd2583ecebeab853&",
-      team1: "Georgia",
-      team2: "Czech Republic",
-      live: true,
-      odds: {
-        team1: 1.93,
-        draw: 3.56,
-        team2: 4.58,
-      },
-    },
+    
   ];

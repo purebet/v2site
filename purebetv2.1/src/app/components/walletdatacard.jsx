@@ -1,7 +1,12 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { Connection, clusterApiUrl, PublicKey } from '@solana/web3.js';
+import {
+  clusterApiUrl,
+  Connection,
+  PublicKey,
+  LAMPORTS_PER_SOL,
+} from "@solana/web3.js";
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import truncateAndMaskWalletAddress from '../utils/truncateAndMaskWalletAddress';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,7 +29,7 @@ export default function WalletDataCard() {
 
   useEffect(() => {
     if (publicKey) {
-      const connection = new Connection(clusterApiUrl('mainnet-beta'));
+      const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
 
       // Fetch SOL balance
       connection.getBalance(publicKey).then(balance => {

@@ -36,7 +36,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
   }, [isPopupVisible]);
 
   return (
-    <div className={`relative flex mb-2 m-4 rounded-xl border-2 border-[#222222] items-center justify-between p-4 bg-black text-white ${isSidebarOpen ? 'hidden md:flex' : 'flex'}`}>
+    <div className={`relative z-50 flex mb-2 m-4 rounded-xl border-2 border-[#222222] items-center justify-between p-4 bg-black text-white ${isSidebarOpen ? 'hidden md:flex' : 'flex'}`}>
       <button 
         className="md:hidden flex text-2xl focus:outline-none" 
         onClick={toggleSidebar}
@@ -56,23 +56,23 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
         <div className='hidden md:block'>
           {!connected && <Image width={20} height={20} src='/warning.svg' alt="Warning" />}
         </div>
-        {connected &&  <button 
+        {/* {connected &&  <button 
             className="md:hidden rounded-md flex justify-center items-center w-8 h-8 "
             onClick={togglePopup}
           >
             {isPopupVisible ? <HiChevronDown color={"#ffffff"} /> : <HiChevronRight color={"#ffffff"} />}
-          </button> }
+          </button> } */}
         &nbsp; &nbsp;
-        <div className='bg-white rounded-md flex justify-center items-center w-24 h-8'>
+        <div className='bg-white rounded-md flex justify-center items-center w-8 md:w-24 h-8'>
 
        
-          {isPopupVisible && (
+          {/* {isPopupVisible && (
             <div className="fixed inset-0 bg-black bg-opacity-50 z-10 flex justify-center items-center" style={{ backdropFilter: 'blur(25px)' }}>
               <div ref={popupRef} className="absolute top-10 right-0  shadow-lg rounded-lg z-20 p-4">
                 <WalletDataCard />
               </div>
             </div>
-          )}
+          )} */}
 
           <WalletMultiButton className="">
             <IoWallet color='black' />

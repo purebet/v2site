@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 
 import Sidebar from "../../components/sidebar";
 import Header from "../../components/header";
-import Avsports from './sports';
+import Sports from './sports';
 import Home from './home'; // import the Home component
 import WalletDataCard from "../../components/walletdatacard";
 
@@ -20,15 +20,28 @@ export default function Component() {
     if (path.includes("home")) {
       return <Home />;
     } else {
-      return <Avsports />;
+      return <Sports />;
     }
   };
 
   return (
-    <div className='bg-black min-h-screen'>
+    <div
+    className='bg-black min-h-screen'>
       <Header toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
 
-      <div className='flex'>
+      <div
+       className='blueball'
+      >
+   </div>
+<div
+  className='colorfulellipse'
+>
+</div>
+
+   
+      <div 
+      
+      className='flex max-w-full'>
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <div className={`flex-1 ${isSidebarOpen ? 'hidden lg:block' : 'block'}`}>
           {renderMainContent()}

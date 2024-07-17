@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { WalletProviderComponent } from './context/WalletContext';
 // import '@solana/wallet-adapter-react-ui/styles.css';
-
+import Bottomnav from "./components/Bottomnav.jsx";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -11,6 +11,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+ 
   return (
     <html className="bg-black" lang="en">
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
       <WalletProviderComponent>
         {children}
         </WalletProviderComponent>
+   <div className="md:hidden">   <Bottomnav /></div>  
         </body>
     </html>
   );
