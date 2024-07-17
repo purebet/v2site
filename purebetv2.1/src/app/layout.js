@@ -11,6 +11,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+ 
   return (
     <html className="bg-black" lang="en">
 
@@ -18,7 +19,7 @@ export default function RootLayout({ children }) {
       <WalletProviderComponent>
         {children}
         </WalletProviderComponent>
-        <Bottomnav/>
+   <div className="md:hidden">   <Bottomnav /></div>  
         </body>
     </html>
   );

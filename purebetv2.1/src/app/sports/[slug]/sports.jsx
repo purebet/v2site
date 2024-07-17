@@ -1,18 +1,21 @@
-import { useState } from 'react';
-import { MdOutlineSportsSoccer } from "react-icons/md";
-import { HiChevronDown , HiChevronRight } from "react-icons/hi2";
+import { useState, useEffect } from 'react';
+  import { MdOutlineSportsSoccer } from "react-icons/md";
+import { HiChevronDown, HiChevronRight } from "react-icons/hi2";
 import useSports from "@/app/hooks/useSports";
 import EventCard from "@/app/components/EventCard";
 
-export default function Avsports() {
-  const { sports, sportName, loading, error } = useSports('29'); // Use appropriate sport ID
+export default function Sports() {
+  
+
+
+  const { sports, sportName, leagues, loading, error } = useSports(); // Use appropriate sport ID
   const [expandedLeagues, setExpandedLeagues] = useState({});
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  const leagues = Object.values(sports[sportName]);
-
+  const leaguesa = sports && sports[sportName] ? Object.values(sports[sportName]):{};
+console.log(leagues)
   const toggleLeague = (leagueId) => {
     setExpandedLeagues(prev => ({
       ...prev,
@@ -21,7 +24,7 @@ export default function Avsports() {
   };
 
   return (
-    <div className="bg-black border-2 md:mx-3 md:m-0 m-4 overflow-x-hidden rounded-lg border-[#222222] text-white p-6 max-h-screen min-h-screen">
+    <div className="bg-black border-2 md:mx-3 md:m-0 m-4 overflow-x-hidden rounded-lg border-[#222222] text-white p-6 max-h-screen md:min-h-screen">
       <div className="mx-auto">
         <div className="flex items-center space-x-2 mb-4">
           <MdOutlineSportsSoccer style={{ width: '35px', height: '35px' }} />
@@ -29,7 +32,8 @@ export default function Avsports() {
         </div>
         <p className="text-muted-foreground mb-6">Top Leagues</p>
         <div className="space-y-4">
-          {leagues.map((league) => (
+        {Object.keys(leaguesa).length > 0 ? (
+      leaguesa.map((league) => (
             <div key={league.leagueId}>
               <div
                 className="flex items-center justify-between p-4 bg-[#1c1c1c] rounded-md cursor-pointer"
@@ -57,31 +61,16 @@ export default function Avsports() {
                 </div>
               )}
             </div>
-          ))}
+         ))
+        ) : (
+          <p>No leagues found for {sportName}</p>
+        )}
         </div>
       </div>
     </div>
   );
 }
 
-function ChevronRightIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m9 18 6-6-6-6" />
-    </svg>
-  );
-}
 
 function StarIcon(props) {
   return (

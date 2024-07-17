@@ -46,13 +46,41 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
-
-
-
-
-
-
-
+.blueball {
+    position: absolute;
+    width: 256.9px;
+    height: 232.02px;
+    left: 0;
+    top: -10px;
+    background-color: rgba(0, 35, 103, 0.4);
+    filter: blur(64.4px);
+    transform: rotate(-142.81deg);
+  }
+  .colorfulellipse {
+    position: absolute;
+    height: 150.02px;
+    top: -15px;
+    background: linear-gradient(
+      90deg,
+      rgba(97, 221, 0, 0.6) 0%,
+      rgba(192, 59, 214, 0.6) 48%,
+      rgba(0, 102, 255, 0.6) 100%
+    );
+    filter: blur(85.05px);
+    transform: rotate(0.44deg);
+  }
+  @media (min-width: 1024px) {
+    .colorfulellipse {
+      width: 256.9px;
+      left: 35%;
+    }
+  }
+  @media (max-width: 1023px) {
+    .colorfulellipse {
+      width: 100%;
+      left: 0;
+    }
+  }
 
 
 

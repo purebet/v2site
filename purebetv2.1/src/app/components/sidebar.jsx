@@ -1,5 +1,6 @@
 'use client'
 import React, { useState , useEffect, useRef } from 'react';
+import { useRouter ,usePathname } from 'next/navigation';  // Import the useRouter hook
 import { IoIosSearch } from "react-icons/io";
 import { RiSidebarFoldLine } from "react-icons/ri";
 import { FaRegHeart } from "react-icons/fa";
@@ -15,8 +16,9 @@ import { IoMdClose } from 'react-icons/io';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
 
+  const router = useRouter(); // Initialize useRouter hook
 
-
+  const path = usePathname();
     const sidebarRef = useRef(null);
 
   const handleClickOutside = (event) => {
@@ -39,11 +41,25 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
 
     const [selectedItem, setSelectedItem] = useState(null);
-
+    useEffect(() => {
+      // Extract the pathname from the router
+    
+  
+      // Check if pathname includes '/sports/'
+      if (path.includes('/sports/')) {
+        // Extract the part after '/sports/' and set it as the selected item
+        const selected = path.split('/sports/')[1];
+        setSelectedItem(selected);
+      } else {
+        setSelectedItem(null);
+      }
+    }, [path]);
+  
     const handleItemClick = (item) => {
       setSelectedItem(selectedItem === item ? null : item);
       toggleSidebar(); // Close the sidebar when a list item is clicked
-
+      router.push(`/sports/${item}`);
+      
     };
   
 

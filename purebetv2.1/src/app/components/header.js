@@ -36,7 +36,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
   }, [isPopupVisible]);
 
   return (
-    <div className={`relative flex mb-2 m-4 rounded-xl border-2 border-[#222222] items-center justify-between p-4 bg-black text-white ${isSidebarOpen ? 'hidden md:flex' : 'flex'}`}>
+    <div className={`relative z-50 flex mb-2 m-4 rounded-xl border-2 border-[#222222] items-center justify-between p-4 bg-black text-white ${isSidebarOpen ? 'hidden md:flex' : 'flex'}`}>
       <button 
         className="md:hidden flex text-2xl focus:outline-none" 
         onClick={toggleSidebar}
