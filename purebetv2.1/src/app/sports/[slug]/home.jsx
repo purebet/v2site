@@ -9,7 +9,7 @@ export default function Home() {
 
 
 return (
-  <div className="flex max-w-[930px] overflow-y-auto  max-h-screen mx-auto flex-col pt-2.5 rounded-lg border border-solid shadow-2xl backdrop-blur-[5.650000095367432px]  bg-neutral-950 border-neutral-800 ">
+  <div className="flex max-w-[930px] overflow-y-auto  min-h-screen max-h-screen mx-auto flex-col pt-2.5 rounded-lg border border-solid shadow-2xl backdrop-blur-[5.650000095367432px]  bg-neutral-950 border-neutral-800 ">
    
     <div className="flex flex-col py-3.5 pl-6 w-full  max-md:pl-5 max-md:max-w-full">
     <div className="text-base  bg-gradient-to-b from-white to-black font-semibold text-transparent bg-clip-text max-md:max-w-full">
