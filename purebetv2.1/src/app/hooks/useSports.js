@@ -5,6 +5,7 @@ const sportIdMap = {
   Soccer: '29',
   Tennis: '33',
   Baseball: '3',
+  Basketball:'4',
 };
 const useSports = (id) => {
   const path = usePathname(); 

@@ -16,15 +16,17 @@ export default function EventCard({ event }) {
           <div className="text-zinc-300 mx-10 ">{event.eventName}</div>
         </div>
         <div className="mt-1.5 text-xs font-medium text-neutral-500 self-start">
-        <div className="md:hidden w-14 h-7 font-poppins font-semibold text-lg leading-7 text-center text-white flex items-center justify-center">
-  <span>{formatTime(event.startTime)}</span>
+        <div className="md:hidden h- font-poppins font-semibold text-sm  text-center text-white ">
+  <div>{formatTime(event.startTime)} </div>
+  
+  <div className="text-[5px] text-neutral-400 -mt-1">{formatDate(event.startTime)}</div>
 </div>
 
 
           <div className="hidden md:block">{formatDate(event.startTime)}</div>
         </div>
       </div>
-      <div className="flex gap-2.5 font-medium text-white">
+      <div className="flex md:gap-2.5 gap-[2px] sm:gap-1.5 font-medium text-white">
         <div className="flex flex-col whitespace-nowrap">
           <div className="self-center text-xs">{truncateText(event.homeTeam, 8)}</div>
           <div className="justify-center max-w-26 min-w-26 px-9 py-2 mt-1.5 text-sm rounded border border-solid bg-zinc-900 border-white border-opacity-10 max-md:px-5">

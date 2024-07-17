@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect ,React } from 'react';
   import { MdOutlineSportsSoccer } from "react-icons/md";
 import { HiChevronDown, HiChevronRight } from "react-icons/hi2";
 import useSports from "@/app/hooks/useSports";
 import EventCard from "@/app/components/EventCard";
-
+import sportsIcons from "@/app/utils/sportsIcons";
+import Image from 'next/image';
 export default function Sports() {
   
 
@@ -23,11 +24,16 @@ console.log(leagues)
     }));
   };
 
+  const normalizedSportName = sportName ? sportName.toLowerCase().replace(/\s+/g, '') : '';
+  const sport = sportsIcons[normalizedSportName] || {};
+  const SportIcon = sport.icon ? sport.icon : null;
+
   return (
     <div className="bg-black border-2 md:mx-3 md:m-0 m-4 overflow-x-hidden rounded-lg border-[#222222] text-white p-6 max-h-screen md:min-h-screen">
       <div className="mx-auto">
         <div className="flex items-center space-x-2 mb-4">
-          <MdOutlineSportsSoccer style={{ width: '35px', height: '35px' }} />
+        {SportIcon ? <SportIcon style={{ width: '35px', height: '35px' }} /> : (sport.src && <Image src={sport.src} alt={sportName} width={35} height={35} />)}
+          
           <h1 className="text-2xl font-bold">{sportName}</h1>
         </div>
         <p className="text-muted-foreground mb-6">Top Leagues</p>
