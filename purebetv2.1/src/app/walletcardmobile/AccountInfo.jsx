@@ -36,7 +36,7 @@ function AccountInfo() {
   };
 
   return (
-    <section className="flex w-full max-h-[55%] fixed bottom-0 flex-col pb-3.5 rounded-lg border border-solid bg-neutral-950 border-zinc-800">
+    <section className="flex min-w-[344px] ml-6 min-h-[55%] fixed bottom-0 flex-col pb-3.5 rounded-lg border border-solid bg-neutral-950 border-zinc-800">
       <div className="shrink-0 self-center mt-1.5 h-0.5 rounded bg-neutral-500 w-[21px]" />
       <div className="flex flex-col px-4 mt-3 w-full">
         <nav className="flex gap-3.5 justify-center items-center text-xs text-white">

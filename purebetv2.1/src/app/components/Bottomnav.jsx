@@ -3,7 +3,17 @@ import * as React from "react";
 import AccountInfo from "../walletcardmobile/AccountInfo";
 import { IoMdClose } from "react-icons/io";
 import Link from 'next/link'
-import { Drawer } from "vaul";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+
 
 export default function Bottomnav() {
 
@@ -15,12 +25,13 @@ export default function Bottomnav() {
     <>
       <div
         id="bottomNav"
-        className="flex w-full fixed bottom-0 flex-col justify-center text-xs text-center whitespace-nowrap text-neutral-400"
+        className="flex w-full  fixed bottom-0 flex-col justify-center text-xs text-center whitespace-nowrap text-neutral-400"
     
       
       >
-        <div className="flex overflow-hidden relative flex-col gap-5 items-start px-7 py-3 w-full border border-solid aspect-[6.72] border-neutral-800 fill-[linear-gradient(180deg,#181818_0%,#000_100%)] stroke-[1px] stroke-neutral-800">
+        <div className="flex overflow-hidden b relative flex-col gap-5 items-start px-7 py-3 w-full  aspect-[6.72]  fill-[linear-gradient(180deg,#181818_0%,#000_100%)] stroke-[1px] stroke-neutral-800">
           <img
+            // style={{clipPath: "polygon(50% 97%, 67% 84%, 100% 83%, 100% 100%, 0 100%, 0 83%, 29% 83%)"}}
             loading="lazy"
             src="/boxbn.png"
             className="object-cover absolute inset-0 w-full h-full"
@@ -72,7 +83,23 @@ export default function Bottomnav() {
           </div>
         </div>
       </div>
-      <Drawer.Root>
+
+      <Drawer>
+  <DrawerTrigger> <div>
+        <img
+          loading="lazy"
+          src="/profilebottomnav.png"
+          className="w-20 aspect-square fixed left-1/2 transform -translate-x-1/2 bottom-10"
+          alt="Profile"
+        />
+      </div></DrawerTrigger>
+  <DrawerContent>
+  <AccountInfo />
+   
+  </DrawerContent>
+</Drawer>
+
+      {/* <Drawer.Root>
       <Drawer.Trigger asChild>
       <div>
         <img
@@ -85,7 +112,7 @@ export default function Bottomnav() {
       </Drawer.Trigger> 
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black" />
-        <Drawer.Content className="bg-zinc-100 z-20 flex flex-col rounded-t-[10px] mt-24 fixed bottom-[400px] left-0 right-0">
+        <Drawer.Content className=" z-20 flex flex-col  fixed bottom-[400px] left-0 right-0">
      
         
           
@@ -94,7 +121,7 @@ export default function Bottomnav() {
         
         </Drawer.Content>
       </Drawer.Portal>
-    </Drawer.Root>
+    </Drawer.Root> */}
     </>
   );
 }

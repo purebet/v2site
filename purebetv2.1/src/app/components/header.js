@@ -63,7 +63,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
             {isPopupVisible ? <HiChevronDown color={"#ffffff"} /> : <HiChevronRight color={"#ffffff"} />}
           </button> } */}
         &nbsp; &nbsp;
-        <div className='bg-white rounded-md flex justify-center items-center w-8 md:w-24 h-8'>
+        <div className='bg-white rounded-md flex justify-center items-center w-12 mx-4 md:w-24 h-8'>
 
        
           {/* {isPopupVisible && (
@@ -75,7 +75,8 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
           )} */}
 
           <WalletMultiButton className="">
-            <IoWallet color='black' />
+           <IoWallet className={`md:block ${connected?"hidden ":"block"}`} color='black' />
+            
             {!connected && <span className='hidden text-xs text-black md:block'>&nbsp; Login</span>}
           </WalletMultiButton>
         </div>
