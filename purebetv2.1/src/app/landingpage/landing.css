@@ -1,0 +1,25 @@
+    .blueEc{
+    /* position: absolute; */
+    position: fixed;
+    width: 80%;
+    height: 403px;
+    top:15%;
+    left: 10%;
+    background: radial-gradient(50% 50% at 50% 50%, #FEFBBC 56.6%, #93F2FF 66.19%, #26E5FF 80.5%);
+    filter: blur(148.15px);
+
+    }
+
+    .whiteEc{
+        /* Ellipse 28 */
+
+display: flex;
+align-items: center;
+justify-content: center;
+width: 803px;
+height: 363px;
+
+background: #FFFFFF;
+filter: blur(79.45px);
+
+    }
