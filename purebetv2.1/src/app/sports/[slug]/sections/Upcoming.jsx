@@ -1,7 +1,7 @@
-import useNext from "@/app/hooks/useNext";
-import { formatDate } from "@/app/utils/formatDate";
-import truncateText from "@/app/utils/truncateText";
-import getOdds from "@/app/utils/getOdds";
+import useNext from "@/src/app/hooks/useNext";
+import { formatDate } from "@/src/app/utils/formatDate";
+import truncateText from "@/src/app/utils/truncateText";
+import getOdds from "@/src/app/utils/getOdds";
 export default function Upcoming() {
   const { leagues, loading, error } = useNext();
 

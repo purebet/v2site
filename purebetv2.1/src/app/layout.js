@@ -6,7 +6,6 @@ import CustomCursor from "./CustomCursor";
 
 import { WalletProviderComponent } from './context/WalletContext';
 // import '@solana/wallet-adapter-react-ui/styles.css';
-import Bottomnav from "./components/Bottomnav.jsx";
 const inter = Inter({ subsets: ["latin"] });
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -32,7 +31,6 @@ export default function RootLayout({ children }) {
       <WalletProviderComponent>
         {children}
         </WalletProviderComponent>
-   <div className="md:hidden">   <Bottomnav /></div>  
         </body>
     </html>
   );

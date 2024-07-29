@@ -1,9 +1,9 @@
 import { useState, useEffect ,React } from 'react';
   import { MdOutlineSportsSoccer } from "react-icons/md";
 import { HiChevronDown, HiChevronRight } from "react-icons/hi2";
-import useSports from "@/app/hooks/useSports";
-import EventCard from "@/app/components/EventCard";
-import sportsIcons from "@/app/utils/sportsIcons";
+import useSports from '../../hooks/useSports';
+import EventCard from '../../components/EventCard';
+import sportsIcons from '../../utils/sportsIcons';
 import Image from 'next/image';
 export default function Sports() {
   

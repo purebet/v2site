@@ -7,7 +7,7 @@ import Header from "../../components/header";
 import Sports from './sports';
 import Home from './home'; // import the Home component
 import WalletDataCard from "../../components/walletdatacard";
-
+import Bottomnav from '../../components/Bottomnav';
 export default function Component() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const path = usePathname();
@@ -50,6 +50,8 @@ export default function Component() {
           <WalletDataCard />
         </div>
       </div>
+      <div className="md:hidden">   <Bottomnav /></div>  
+
     </div>
   );
 }
