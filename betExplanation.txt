@@ -35,7 +35,7 @@ placeBet()
 @return: output, an object with the attributes:
     showNow: information on bets that should be shown immediately, a list of objects each with the attributes of pending bets
     listen: string, address of bet to listen to for when it is confirmed to be placed
-description: placeBet genTx to build the transaction, or makes an API call for the transaction if needed. 
+description: placeBet calls genTx to build the transaction, or makes an API call for the transaction if needed. 
     Right now the API call in line 143 is not implemented .
     In the future, it will also make a separate API call for parlay bets when fixtures has isParlay set to true
     It then handles sending the transaction and passing on the necessary info to handle after bet functionality
