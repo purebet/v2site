@@ -31,7 +31,7 @@ const steps = [
 
 function EasySteps() {
   return (
-    <main className="pt-9 md:pl-20 pl-10">
+    <main className="pt-9 md:pl-20 pl-10 bg-none">
       <div className="flex gap-5 max-md:flex-col">
         <section className="flex flex-col w-[44%] max-md:ml-0 max-md:w-full">
           <div className="flex flex-col grow mt-20 max-md:mt-10 max-md:max-w-full">
@@ -58,11 +58,21 @@ function EasySteps() {
             </div>
           </div>
         </section>
-        <section className="flex flex-col ml-5 w-[56%] max-md:ml-0 max-md:w-full">
+        <section className="flex bg-none absolute right-40 flex-col ml-5 max-md:ml-0 max-md:w-full">
+          
           <div className="px-16 pt-20 mt-9 rounded-full max-md:px-5 max-md:mt-10 max-md:max-w-full">
-            <div className="flex gap-5 max-md:flex-col">
-              <DocsCard />
-              <RoundedImage />
+            <div className="flex gap-5 bg-black max-md:flex-col">
+            <RoundedImage />
+              
+            </div>
+          </div>
+        </section>
+        <section className="flex bg-none flex-col ml-5 w-[56%] max-md:ml-0 max-md:w-full">
+          
+          <div className="px-16 pt-20 mt-9 rounded-full max-md:px-5 max-md:mt-10 max-md:max-w-full">
+            <div className="flex gap-5 bg-black max-md:flex-col">
+            
+            
             </div>
           </div>
         </section>

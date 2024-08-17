@@ -19,7 +19,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
  
   return (
-    <html className="bg-black custom-cursor" lang="en">
+    <html className="bg-black custom-cursor overflow-x-hidden" lang="en">
 
       <body  
       className={cn(

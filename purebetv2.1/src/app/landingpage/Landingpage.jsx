@@ -6,6 +6,7 @@ import CustomCursor from "../CustomCursor";
 import Main from './Main'
 import Unlock from "./Unlock";
 import EasySteps from "./EasySteps/EasySteps";
+import AboutUs from "./AboutUs/AboutUs";
 export default function Landingpage(){
     return(<>
          <div className='bg-black blueEc -z-[0] flex items-center justify-center text-white landingpagecursor'>
@@ -17,6 +18,7 @@ export default function Landingpage(){
       <div >
       <Unlock/>
       <EasySteps />
+      <AboutUs/>
       </div>
   
         </>)
