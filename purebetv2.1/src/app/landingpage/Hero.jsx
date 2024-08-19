@@ -5,6 +5,7 @@ import "@fontsource/poppins";
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from 'react';
 // import Link from 'next/link'
+import { FaDiscord } from "react-icons/fa";
 // import Navbar from "../components/Navbar";
 import Navbar from "./NavbarMobile";
 import hero_bg from "../../../public/hero_bg.png";
@@ -290,12 +291,37 @@ export default function Hero() {
             </p>
           </div>
         </div>
-
-        <div className="relative z-40 flex items-center justify-center gap-4 mt-10">
-          <div className="border-[#707070] border-[1px] items-center pl-3 rounded-xl flex gap-4">
-            <p className="font-inter text-[10px]">Join Our Discord Community</p>
-            <Image alt="alt" src={discord} className="rounded-r-xl" />
+        {/* <div className="flex z-[50] mt-20 md:mt-0 justify-center items-center">
+      <div className="group relative flex items-center w-[200px] h-[39px] border border-[#707070] backdrop-blur-sm rounded-[10px] box-border overflow-hidden">
+        <div className="absolute inset-0 bg-[#321EAE] transform translate-x-full group-hover:translate-x-0 group-focus:translate-x-0 transition-transform duration-300 ease-in-out"></div>
+        <div className="relative flex-grow pl-[13px] text-white z-10">
+          <div className="font-inter font-semibold text-[10px] leading-[12px] text-center">
+            Join Our Discord Community
           </div>
+        </div>
+        <div className="relative flex items-center justify-center w-[35px] rounded-md mr-[0.1px] my-[0.4px] h-full bg-[#321EAE] z-10">
+          <FaDiscord color="white" />
+        </div>
+      </div>
+    </div> */}
+        <div className="relative  z-40 flex items-center justify-center gap-4 mt-10">
+          {/* <div className="border-[#707070] border-[1px] items-center pl-3 rounded-xl flex gap-4 ">
+            <p className="font-inter text-[10px] ">Join Our Discord Community</p>
+            <Image alt="alt" src={discord} className="rounded-r-xl" />
+          </div> */}
+
+
+<div className="group relative flex items-center w-[200px] h-[39px] border border-[#707070] backdrop-blur-sm rounded-[10px] box-border overflow-hidden">
+        <div className="absolute inset-0 bg-[#321EAE] transform translate-x-full group-hover:translate-x-0 group-focus:translate-x-0 transition-transform duration-300 ease-in-out"></div>
+        <div className="relative flex-grow pl-[13px] text-white z-10">
+          <div className="font-inter font-semibold text-[10px] leading-[12px] text-center">
+            Join Our Discord Community
+          </div>
+        </div>
+        <div className="relative flex items-center justify-center w-[35px] rounded-md mr-[0.1px] my-[0.4px] h-full bg-[#321EAE] z-10">
+          <FaDiscord color="white" />
+        </div>
+      </div>
         </div>
         <div className="absolute left-[60%] md:left-[53%] mt-4 flex gap-1 items-start">
           <Image alt="alt" src={green_cursor} />
