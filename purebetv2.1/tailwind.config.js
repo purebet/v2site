@@ -20,6 +20,11 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -69,6 +74,11 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+      },
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+        dmSans: ["DM Sans", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",

@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import { Inter as FontSans } from "next/font/google"
 import "./globals.css";
+import "./globals2.css";
 import { cn } from "@/lib/utils"
 import CustomCursor from "./CustomCursor";
 

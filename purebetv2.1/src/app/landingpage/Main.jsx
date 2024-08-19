@@ -17,13 +17,13 @@ export default function Main(){
     <div className={`${dmsans.className} z-[0] `}>
         <div className="md:flex hidden  justify-center items-center">
         <div className="md:-mr-20 z-[0]">
-    <Image src="/baseball.png" width={150} height={150} alt="baseball"/>
+    <Image  src="/baseball.png" width={150} height={150} alt="baseball"/>
     </div>
     <div className="text-black z-[0] hidden md:block text-[74px] text-center linehghtcss w-[970px] h-[192px] font-bold">The sports betting experience you deserve</div>
     <div className="text-black z-[0] md:hidden   text-[74px] text-center linehghtcss w-[970px] h-[192px] font-bold">{"    "}</div>
 
     <div className="md:-ml-20 mt-10 z-[99999]">
-    <Image src="/rugby.png" width={267} height={280} alt="rubgby"/>
+    <Image  src="/rugby.png" width={267} height={280} alt="rubgby"/>
     </div>
 
     </div>
@@ -34,12 +34,12 @@ export default function Main(){
 
     <div className="flex md:hidden  justify-center items-center">
         <div className="md:-mr-20 z-[50]">
-    <Image src="/baseball.png" width={150} height={350} alt="baseball"/>
+    <Image  src="/baseball.png" width={150} height={350} alt="baseball"/>
     </div>
     <div className="text-black z-[10] md:hidden   text-[74px] text-center  w-[270px]  font-bold">{"    "}</div>
 
     <div className="md:-ml-20  z-[50]">
-    <Image src="/rugby.png" width={167} height={280} alt="rubgby"/>
+    <Image  src="/rugby.png" width={167} height={280} alt="rubgby"/>
     </div>
 
     </div>
@@ -52,20 +52,21 @@ export default function Main(){
     <div className="flex  justify-center items-center">
     <div className=" flex z-[10] text-black mt-6 mx-4 md:hidden linehghtcsssm text-center   font-bold">The sports betting experience you deserve</div>
 </div>
-<div className="flex mt-10 md:mt-0 justify-center items-center">
+<a href="/sports/home"><div className="flex mt-10 md:mt-0 justify-center items-center">
 
 
-    <div className="CTA w-44 z-[50] gap-1">Start Betting <span className="ml-2"> <Image width={15} height={20} src="/cursornormal.png" alt="cursor" /> </span></div>
+    <div className="CTA w-44 z-[50] gap-1">Start Betting <span className="ml-2"> <Image  width={15} height={20} src="/cursornormal.png" alt="cursor" /> </span></div>
    
     </div>
+    </a>
 <div className="flex md:hidden ">
         <div className="-mr-40 z-[50]">
-    <Image src="/Basketball.png" width={650} height={650} alt="baseball"/>
+    <Image  src="/Basketball.png" width={650} height={650} alt="baseball"/>
     </div>
     <div className="text-black z-[10] md:hidden   text-[74px] w-[1070px]  font-bold">{"    "}</div>
 
     <div className="-ml-20 z-[50]">
-    <Image src="/Soccer.png" width={667} height={680} alt="rubgby"/>
+    <Image  src="/Soccer.png" width={667} height={680} alt="rubgby"/>
     </div>
 
     </div>
@@ -74,7 +75,7 @@ export default function Main(){
 
     <div className="flex justify-between items-center">
   <div className="md:block relative hidden z-[99999]">
-    <Image src="/Basketball.png" width={270} height={270} alt="basketball" />
+    <Image  src="/Basketball.png" width={270} height={270} alt="basketball" />
   </div>
   <div className="flex-grow text-center">
             {/* Group 29 */}
