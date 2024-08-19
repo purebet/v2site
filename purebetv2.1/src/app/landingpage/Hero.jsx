@@ -1,3 +1,4 @@
+'use client'
 import "@fontsource/inter";
 import "@fontsource/dm-sans";
 import "@fontsource/poppins";
@@ -23,7 +24,7 @@ import ellipse2 from "../../../public/ellipse_2.svg";
 import ellipse2_mob from "../../../public/ellipse_2_mob.svg";
 import ellipse1_mob from "../../../public/ellipse_1_mob.svg";
 import baseball from "../../../public/baseball.png";
-import basketball from "../../../public/basketball.png";
+import basketball from "../../../public/Basketball.png";
 import rugby from "../../../public/rugby.png";
 import football from "../../../public/football.png";
 import baseball_mob from "../../../public/baseball_mob.png";
@@ -54,6 +55,7 @@ export default function Hero() {
       setIsOpen(false);
     }
   };
+  const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -101,7 +103,7 @@ export default function Hero() {
           <div className="hidden md:block">
             <Image alt="alt" src={basketball} className="absolute bottom-[12%] left-[4%] z-50" />
           </div>
-          <div className="md:hidden">
+          <div  className="md:hidden">
             <Image alt="alt" src={basketball_mob} className="absolute bottom-[44%] left-0 z-50" />
           </div>
           <div className="md:hidden">
@@ -110,7 +112,7 @@ export default function Hero() {
           <div className="md:hidden">
             <Image alt="alt" src={baseball_mob} className="absolute top-[11%] left-0 z-50" />
           </div>
-          <div className="md:hidden">
+          <div onClick={toggleNavbar} className="md:hidden">
             <Image alt="alt" src={rugby_mob} className="absolute top-[8%] right-0 z-50" />
           </div>
           <div className="absolute hidden md:block bottom-[-7%] w-full z-30">
@@ -225,7 +227,7 @@ export default function Hero() {
           
           <>
       <button className="md:hidden" onClick={toggleNavbar}>
-        <Image alt="alt" src={burger} className="h-[17px] w-[25px]" />
+        <Image alt="alt" src={burger} className="h-[17px] z-[9999] w-[25px]" />
       </button>
       {isOpen && (
         <div
@@ -270,27 +272,32 @@ export default function Hero() {
           </a>
         </div>
         <div className="relative z-40 flex justify-center mt-24 md:mt-16">
-          <div className="flex flex-col items-center justify-center">
-            <Image alt="alt" src={connect} />
-            <p className="font-poppins text-[10px] md:text-[14px] text-white absolute top-[100%]">
-              Connect
-            </p>
-          </div>
-          <Image alt="alt" src={line} />
-          <div className="flex flex-col items-center justify-center">
-            <Image alt="alt" src={select} />
-            <p className="font-poppins text-[10px] md:text-[14px] text-white absolute top-[100%]">
-              Select
-            </p>
-          </div>
-          <Image alt="alt" src={line} />
-          <div className="flex flex-col items-center justify-center">
-            <Image alt="alt" src={bet} />
-            <p className="font-poppins text-[10px] md:text-[14px] text-white absolute top-[100%]">
-              Bet
-            </p>
-          </div>
-        </div>
+  <div className="flex flex-col items-center justify-center relative">
+    <Image alt="alt" src={connect} />
+    <p className="font-poppins text-[10px] md:text-[14px] text-white absolute top-[100%]">
+      Connect
+    </p>
+  </div>
+  <div className="mt-4 relative">
+    <Image alt="alt" src={line}  />
+  </div>
+  <div className="flex flex-col items-center justify-center relative">
+    <Image alt="alt" src={select} />
+    <p className="font-poppins text-[10px] md:text-[14px] text-white absolute top-[100%]">
+      Select
+    </p>
+  </div>
+  <div className="relative mt-4">
+    <Image alt="alt" src={line} className="" />
+  </div>
+  <div className="flex flex-col items-center justify-center relative">
+    <Image alt="alt" src={bet} />
+    <p className="font-poppins text-[10px] md:text-[14px] text-white absolute top-[100%]">
+      Bet
+    </p>
+  </div>
+</div>
+
         {/* <div className="flex z-[50] mt-20 md:mt-0 justify-center items-center">
       <div className="group relative flex items-center w-[200px] h-[39px] border border-[#707070] backdrop-blur-sm rounded-[10px] box-border overflow-hidden">
         <div className="absolute inset-0 bg-[#321EAE] transform translate-x-full group-hover:translate-x-0 group-focus:translate-x-0 transition-transform duration-300 ease-in-out"></div>
@@ -310,18 +317,24 @@ export default function Hero() {
             <Image alt="alt" src={discord} className="rounded-r-xl" />
           </div> */}
 
-
-<div className="group relative flex items-center w-[200px] h-[39px] border border-[#707070] backdrop-blur-sm rounded-[10px] box-border overflow-hidden">
-        <div className="absolute inset-0 bg-[#321EAE] transform translate-x-full group-hover:translate-x-0 group-focus:translate-x-0 transition-transform duration-300 ease-in-out"></div>
-        <div className="relative flex-grow pl-[13px] text-white z-10">
-          <div className="font-inter font-semibold text-[10px] leading-[12px] text-center">
-            Join Our Discord Community
-          </div>
-        </div>
-        <div className="relative flex items-center justify-center w-[35px] rounded-md mr-[0.1px] my-[0.4px] h-full bg-[#321EAE] z-10">
-          <FaDiscord color="white" />
+<div
+      className="group relative z-50 flex items-center w-[200px] h-[39px] border border-[#707070] backdrop-blur-sm rounded-[10px] box-border overflow-hidden"
+      onClick={() => setIsClicked(!isClicked)}
+    >
+      <div
+        className={`absolute inset-0 bg-[#321EAE] transform transition-transform duration-300 ease-in-out ${
+          isClicked ? 'translate-x-0' : 'translate-x-full'
+        } group-hover:translate-x-0 group-focus:translate-x-0`}
+      ></div>
+      <div className="relative flex-grow pl-[13px] text-white z-10">
+        <div className="font-inter font-semibold text-[10px] leading-[12px] text-center">
+          Join Our Discord Community
         </div>
       </div>
+      <div className="relative flex items-center justify-center w-[35px] rounded-md mr-[0.1px] my-[0.4px] h-full bg-[#321EAE] z-10">
+        <FaDiscord color="white" />
+      </div>
+    </div>
         </div>
         <div className="absolute left-[60%] md:left-[53%] mt-4 flex gap-1 items-start">
           <Image alt="alt" src={green_cursor} />
