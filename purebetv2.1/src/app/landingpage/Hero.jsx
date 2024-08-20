@@ -71,12 +71,18 @@ export default function Hero() {
 
   return (
     <main>
-      {isOpen ? (
-        // Only render the Navbar when it is open
+      
+        {/* // Render the rest of the content when the Navbar is closed */}
+        <>
+          {isOpen && (
+<div className="bg-black h-screen">
+        {/* // Only render the Navbar when it is open */}
         <div
-          ref={navbarRef}
-          className="fixed top-0 right-0 w-64 h-full bg-black text-white z-50 p-6 shadow-lg transition-transform transform translate-x-0"
-        >
+        ref={navbarRef}
+        className={`fixed top-0 right-0 w-64 h-full bg-black text-white z-50 p-6 shadow-lg transition-transform duration-1000 ease-in-out transform ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
           <div className="flex justify-end">
             <button onClick={toggleNavbar}>&times;</button>
           </div>
@@ -88,9 +94,8 @@ export default function Hero() {
             <li><a href="#onboarding">Onboarding</a></li>
           </ul>
         </div>
-      ) : (
-        // Render the rest of the content when the Navbar is closed
-        <>
+        </div>
+      )}
           {/* All the other content goes here */}
           <div className="w-full md:hidden">
             <div className="absolute w-full z-40 top-[12%]">
@@ -107,13 +112,13 @@ export default function Hero() {
             <Image alt="alt" src={basketball_mob} className="absolute bottom-[44%] left-0 z-50" />
           </div>
           <div className="md:hidden">
-            <Image alt="alt" src={football_mob} className="absolute bottom-[49%] right-0 z-50" />
+            <Image alt="alt" src={football_mob} className="absolute bottom-[49%] right-0 z-40" />
           </div>
           <div className="md:hidden">
             <Image alt="alt" src={baseball_mob} className="absolute top-[11%] left-0 z-50" />
           </div>
           <div onClick={toggleNavbar} className="md:hidden">
-            <Image alt="alt" src={rugby_mob} className="absolute top-[8%] right-0 z-50" />
+            <Image alt="alt" src={rugby_mob} className="absolute top-[8%] right-0 z-40" />
           </div>
           <div className="absolute hidden md:block bottom-[-7%] w-full z-30">
             <Image alt="alt" src={ellipse3} className="w-full" />
@@ -204,7 +209,7 @@ export default function Hero() {
 
 
        {/* <Navbar /> */}
-        <div className="relative z-40 flex items-center justify-between text-sm">
+        <div className="relative z-50 flex items-center justify-between text-sm">
           <Image alt="alt" src={logo} className="w-16 h-10"></Image>
 
           <div className="items-center justify-center hidden gap-8 md:flex">
@@ -261,7 +266,7 @@ export default function Hero() {
               <Image alt="alt" src={rugby} className="" />
             </div>
           </div>
-          <a href="/sports/home">
+          <a className="z-[999999]" href="/sports/home">
           <button className="flex items-center gap-2 text-black py-[10px] font-poppins font-[600] text-[12px] md:text-base px-[20px] rounded-full bg-white hero_btn_shadow">
             Start Betting
             <Image
@@ -278,7 +283,7 @@ export default function Hero() {
       Connect
     </p>
   </div>
-  <div className="mt-4 relative">
+  <div className="mt-[1.1rem] relative">
     <Image alt="alt" src={line}  />
   </div>
   <div className="flex flex-col items-center justify-center relative">
@@ -287,7 +292,7 @@ export default function Hero() {
       Select
     </p>
   </div>
-  <div className="relative mt-4">
+  <div className="relative mt-[1.1rem]">
     <Image alt="alt" src={line} className="" />
   </div>
   <div className="flex flex-col items-center justify-center relative">
@@ -318,7 +323,7 @@ export default function Hero() {
           </div> */}
 
 <div
-      className="group relative z-50 flex items-center w-[200px] h-[39px] border border-[#707070] backdrop-blur-sm rounded-[10px] box-border overflow-hidden"
+      className="group relative z-[999999] flex items-center w-[200px] h-[39px] border border-[#707070] backdrop-blur-sm rounded-[10px] box-border overflow-hidden"
       onClick={() => setIsClicked(!isClicked)}
     >
       <div
@@ -346,7 +351,7 @@ export default function Hero() {
         </div>
       </div>
       </>
-      )}
+     
     </main>
   );
 }

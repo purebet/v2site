@@ -12,6 +12,9 @@ module.exports = {
     container: {
       center: true,
       padding: "2rem",
+       transitionDuration: {
+        '10000': '10000ms',
+      },
       screens: {
         "2xl": "1400px",
       },
