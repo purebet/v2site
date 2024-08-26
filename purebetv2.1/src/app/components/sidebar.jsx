@@ -49,7 +49,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   };
 
   const renderIcon = (IconComponent, src) => {
-    return src ? <Image width={20} height={20} src={src} /> : <IconComponent />;
+    return src ? <Image  width={20} height={20} src={src} /> : <IconComponent />;
   };
 
   const formatSportName = (sport) => {

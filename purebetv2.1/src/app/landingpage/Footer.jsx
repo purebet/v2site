@@ -12,10 +12,10 @@ export default function Footer() {
   return (
     <main className="relative">
       <div className="absolute bottom-0 right-0 hidden w-full -z-9 md:block">
-        <Image alt="alt" src={footer_gradient} className="w-full" />
+        <Image  alt="alt" src={footer_gradient} className="w-full pointer-events-none" />
       </div>
       <div className="absolute bottom-[17%] right-0 w-full h-[400px] -z-9 md:hidden">
-        <Image alt="alt" src={footer_gradient_mob} className="w-full h-[500px]" />
+        <Image alt="alt" src={footer_gradient_mob} className="w-full h-[500px] pointer-events-none" />
       </div>
 
       <div className="px-6 pt-16 mt-10 md:mt-0 sm:px-12 md:px-20 md:pb-12 lg:px-28">
@@ -23,7 +23,7 @@ export default function Footer() {
           <div className="flex flex-col items-center md:flex-row">
             <Image
               src={footer_logo}
-              className="w-[127px] h-[82px] md:w-[147px] md:h-[95px] mb-8 md:mb-0"
+              className="w-[127px] h-[82px] md:w-[147px] md:h-[95px] mb-8 md:mb-0 pointer-events-none"
             />
             <div className="flex flex-col items-center gap-6 mb-4 text-sm md:items-start font-poppins md:mb-0">
               <div className="flex gap-6">
@@ -44,7 +44,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="flex gap-4 mb-5 md:mb-0">
-            <Image alt="alt" src={ig} />
+            <Image alt="alt"  src={ig} />
             <Image alt="alt" src={medium} />
             <Image alt="alt" src={x} />
             <Image alt="alt" src={discord_footer} />

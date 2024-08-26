@@ -17,7 +17,7 @@ export default function Navbar() {
       {/* above mobile */}
     <div className="nav hidden my-10 md:flex text-white justify-between items-center px-4">
       <div className="flex ml-20 items-center">
-        <Image width={62} height={42} src="/logo.png" alt="logo" />
+        <Image className='pointer-events-none' width={62} height={42} src="/logo.png" alt="logo" />
       </div>
       <NavigationMenuDemo />
       <div className="flex mr-20 space-x-4">
@@ -32,7 +32,7 @@ export default function Navbar() {
 {/* mobile */}
 <header className="flex md:hidden  z-[99999999] bg-black text-white h-16 w-full items-center justify-between px-4 md:px-6">
       <Link href="#" className="flex items-center gap-2" prefetch={false}>
-      <Image width={62} height={42} src="/logo.png" alt="logo" />
+      <Image className='pointer-events-none' width={62} height={42} src="/logo.png" alt="logo" />
 
       </Link>
       <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
@@ -52,7 +52,7 @@ export default function Navbar() {
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon" className="md:hidden block">
-            <Image src={"/logo.png"} width={100} height={100} alt='1' />
+            <Image className='pointer-events-none' src={"/logo.png"} width={100} height={100} alt='1' />
             <MenuIcon className="h-6 w-6 text-white bg-white" />
             <span className="sr-only">Toggle navigation menu</span>
           </Button>

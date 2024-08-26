@@ -8,9 +8,42 @@ import { FaBars } from 'react-icons/fa';
 import { IoIosSearch } from 'react-icons/io';
 import { useWallet } from '@solana/wallet-adapter-react';
 import WalletDataCard from './walletdatacard';
-
+import {
+  ConnectButton,
+  ModalProvider,
+  useAccount,
+  useParticleConnect,
+  useConnectKit
+  } from '@particle-network/connect-react-ui';
+  import {Solana, SolanaDevnet } from '@particle-network/chains'
+  import { solanaWallets } from '@particle-network/connect'
+  import {
+    clusterApiUrl,
+    Connection,
+    PublicKey,
+    LAMPORTS_PER_SOL,
+  } from "@solana/web3.js";
+  import bs58 from 'bs58';
+  // import './App.css';
+  import '@particle-network/connect-react-ui/dist/index.css'
 const Header = ({ toggleSidebar, isSidebarOpen }) => {
-  const { connected } = useWallet();
+  const { connect, disconnect } = useParticleConnect();
+  const connectKit = useConnectKit();
+  const account = useAccount();
+  const isParticleActive = connectKit?.particle?.auth.isLogin();
+  const getProvider =  () => isParticleActive ? null: window.phantom?.solana;
+  const connectPhantom = async () => {
+  const provider = getProvider();
+  if (provider) {
+  await provider.connect();
+  }
+  }
+
+  useEffect(()=>{
+      if (account) connectPhantom();
+  },[account]);
+
+
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const popupRef = useRef(null);
 
@@ -35,6 +68,45 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
     };
   }, [isPopupVisible]);
 
+
+
+
+
+
+
+  //wallet 
+
+
+  
+  const getBalance = async  ( )=> {
+    const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+    const phantomProvider = getProvider();
+    const address = phantomProvider?.isPhantom ? phantomProvider?.publicKey.toString(): await connectKit.particle.solana.getAddress();
+    console.log(address)
+    const balance = await connection.getBalance(new PublicKey(address));
+    // let wallet = new PublicKey("G2FAbFQPFa5qKXCetoFZQEvF9BVvCKbvUZvodpVidnoY");
+    // console.log(
+    //   `${(await connection.getBalance(wallet)) / LAMPORTS_PER_SOL} SOL`,
+    // );
+    console.log(`${(balance) / LAMPORTS_PER_SOL} SOL` )
+    // notification.success({
+    // message: "getBalance successful",
+    // description: 'Balance: ${balance / 1e9} SOL',
+    // });
+    };
+    const personalSign = async () => {
+    const message = "GMGM Particle Network!";
+    const encodedMessage = new TextEncoder().encode(message);
+    const phantomProvider =  getProvider();
+    const signedMessage = phantomProvider?.isPhantom ? await phantomProvider?.signMessage(encodedMessage, 'utf8'): await connectKit.particle.solana.signMessage(bs58.encode( encodedMessage));
+    // notification.success({
+    // message: `personalSign successful (${phantomProvider.isPhantom ? 'Phantom' : 'Particle'})`,
+    // description: JSON.stringify(signedMessage),
+    // });
+    };
+
+    const onDisconnect = () => disconnect({ hideLoading: true });
+   
   return (
     <div className={`relative z-50 flex mb-2 m-4 rounded-xl border-2 border-[#222222] items-center justify-between p-4 bg-black text-white ${isSidebarOpen ? 'hidden md:flex' : 'flex'}`}>
       <button 
@@ -54,7 +126,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
      
       <div className='flex justify-center items-center'>
         <div className='hidden md:block'>
-          {!connected && <Image width={20} height={20} src='/warning.svg' alt="Warning" />}
+          {/* {!connected && <Image className='pointer-events-none'  width={20} height={20} src='/warning.svg' alt="Warning" />} */}
         </div>
         {/* {connected &&  <button 
             className="md:hidden rounded-md flex justify-center items-center w-8 h-8 "
@@ -74,11 +146,32 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
             </div>
           )} */}
 
-          <WalletMultiButton className="">
+          {/* <WalletMultiButton className="">
            <IoWallet className={`md:block ${connected?"hidden ":"block"}`} color='black' />
             
             {!connected && <span className='hidden text-xs text-black md:block'>&nbsp; Login</span>}
           </WalletMultiButton>
+          
+          */}
+
+<div className={`connectkit-box ${account ? 'show-all-buttons' : 'hide-all-buttons'}`}>
+              <div className="connect-btn">
+                <ConnectButton />
+              </div>
+              {account && (
+                <div className="connected-actions text-white">
+                  <div type="primary" onClick={getBalance}>
+                    Get Balance
+                  </div>
+                  <div type="primary" onClick={personalSign}>
+                    Personal Sign
+                  </div>
+                  <div type="primary" onClick={onDisconnect}>
+                    Disconnect
+                  </div>
+                </div>
+              )}
+            </div>
         </div>
       </div>
     </div>

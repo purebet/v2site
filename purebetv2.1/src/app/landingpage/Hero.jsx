@@ -99,91 +99,91 @@ export default function Hero() {
           {/* All the other content goes here */}
           <div className="w-full md:hidden">
             <div className="absolute w-full z-40 top-[12%]">
-              <Image alt="alt" src={ellipse2_mob} className="w-full h-[195px]" />
+              <Image alt="alt" src={ellipse2_mob} className="w-full h-[195px] pointer-events-none" />
             </div>
           </div>
           <div className="hidden md:block">
-            <Image alt="alt" src={football} className="absolute bottom-[6%] right-0 z-50" />
+            <Image alt="alt" src={football} className="absolute bottom-[6%] right-0 z-50 pointer-events-none" />
           </div>
           <div className="hidden md:block">
-            <Image alt="alt" src={basketball} className="absolute bottom-[12%] left-[4%] z-50" />
+            <Image alt="alt" src={basketball} className="absolute bottom-[12%] left-[4%] z-50 pointer-events-none" />
           </div>
           <div  className="md:hidden">
-            <Image alt="alt" src={basketball_mob} className="absolute bottom-[44%] left-0 z-50" />
+            <Image alt="alt" src={basketball_mob} className="absolute bottom-[44%] left-0 z-50 pointer-events-none" />
           </div>
           <div className="md:hidden">
-            <Image alt="alt" src={football_mob} className="absolute bottom-[49%] right-0 z-40" />
+            <Image alt="alt" src={football_mob} className="absolute bottom-[49%] right-0 z-40 pointer-events-none" />
           </div>
           <div className="md:hidden">
-            <Image alt="alt" src={baseball_mob} className="absolute top-[11%] left-0 z-50" />
+            <Image alt="alt" src={baseball_mob} className="absolute top-[11%] left-0 z-50 pointer-events-none" />
           </div>
           <div onClick={toggleNavbar} className="md:hidden">
-            <Image alt="alt" src={rugby_mob} className="absolute top-[8%] right-0 z-40" />
+            <Image alt="alt" src={rugby_mob} className="absolute top-[8%] right-0 z-40 pointer-events-none" />
           </div>
           <div className="absolute hidden md:block bottom-[-7%] w-full z-30">
-            <Image alt="alt" src={ellipse3} className="w-full" />
+            <Image alt="alt" src={ellipse3} className="w-full pointer-events-none" />
           </div>
           <div className="absolute hidden md:block bottom-[-22%] w-full z-30">
-            <Image alt="alt" src={ellipse4} className="w-full" />
+            <Image alt="alt" src={ellipse4} className="w-full pointer-events-none" />
           </div>
           <div className="absolute md:hidden bottom-[54%] w-full z-30">
-            <Image alt="alt" src={ellipse3_mob} className="w-full" />
+            <Image alt="alt" src={ellipse3_mob} className="w-full pointer-events-none" />
           </div>
 
           {/* dot elements */}
           <div className="z-30 absolute top-[7%] left-[-4%] md:top-[4%] md:left-[15%]">
-            <Image alt="alt" src={hero_dot} />
+            < Image  className='pointer-events-none' alt="alt" src={hero_dot} />
           </div>
           <div className="z-30 absolute top-[6%] left-[60%] md:top-[15%] md:left-[10%]">
-            <Image alt="alt" src={hero_dot} />
+            < Image  className='pointer-events-none' alt="alt" src={hero_dot} />
           </div>
           <div className="z-30 absolute top-[9%] left-[97%] md:top-[18%] md:left-[4%]">
-            <Image alt="alt" src={hero_dot} />
+            < Image  className='pointer-events-none' alt="alt" src={hero_dot} />
           </div>
           <div className="z-30 absolute top-[57%] left-[1%]">
-            <Image alt="alt" src={hero_dot} />
+            < Image  className='pointer-events-none' alt="alt" src={hero_dot} />
           </div>
           <div className="z-30 absolute bottom-[50%] left-[30%] md:bottom-[3%] md:left-[34%]">
-            <Image alt="alt" src={hero_dot} />
+            < Image  className='pointer-events-none' alt="alt" src={hero_dot} />
           </div>
           <div className="z-30 absolute bottom-[55%] right-[34%] md:bottom-[6%] md:right-[37%]">
-            <Image alt="alt" src={hero_dot} />
+            <Image className='pointer-events-none' alt="alt" src={hero_dot} />
           </div>
           <div className="z-30 absolute bottom-[45%] right-[13%] md:bottom-[20%] md:right-[20%]">
-            <Image alt="alt" src={hero_dot} />
+            <Image className='pointer-events-none' alt="alt" src={hero_dot} />
           </div>
           <div className="z-30 absolute bottom-[2%] right-[10%] hidden md:block">
-            <Image alt="alt" src={hero_dot} />
+            <Image className='pointer-events-none' alt="alt" src={hero_dot} />
           </div>
           <div className="z-30 absolute bottom-[52%] right-[8%] hidden md:block">
-            <Image alt="alt" src={hero_dot} />
+            <Image className='pointer-events-none' alt="alt" src={hero_dot} />
           </div>
           <div className="z-30 absolute bottom-[70%] right-[6%] hidden md:block">
-            <Image alt="alt" src={hero_dot} />
+            <Image className='pointer-events-none' alt="alt" src={hero_dot} />
           </div>
           <div className="z-30 absolute top-[16%] right-[27%] hidden md:block">
-            <Image alt="alt" src={hero_dot} />
+            <Image className='pointer-events-none' alt="alt" src={hero_dot} />
           </div>
           <div className="z-30 absolute bottom-[-14%] left-[8%] hidden md:block">
-            <Image alt="alt" src={hero_dot} />
+            <Image className='pointer-events-none' alt="alt" src={hero_dot} />
           </div>
 
           {/* main section with padding */}
           <div className="px-6 pt-10 sm:px-12 md:px-20 md:pb-12 lg:px-28">
         <div className="flex justify-center md:hidden">
           <div className="absolute z-40 top-[18%] h-[100px] ">
-            <Image alt="alt" src={ellipse1_mob}></Image>
+            <Image className='pointer-events-none'  alt="alt" src={ellipse1_mob}></Image>
           </div>
         </div>
 
         <div className="justify-center hidden md:flex">
           <div className="absolute z-40 top-[48%] h-[231px] ">
-            <Image alt="alt" src={ellipse1}></Image>
+            <Image className='pointer-events-none'  alt="alt" src={ellipse1}></Image>
           </div>
         </div>
         <div className="justify-center hidden md:flex">
           <div className="absolute z-40 top-[42%] h-[347px]">
-            <Image alt="alt" src={ellipse2}></Image>
+            <Image className='pointer-events-none'  alt="alt" src={ellipse2}></Image>
           </div>
         </div>
         <Image
