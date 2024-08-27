@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-
+import { BASE_URL } from '../utils/apicalls';
 const sportIdMap = {
   Soccer: '29',
   Tennis: '33',
@@ -21,7 +21,7 @@ const useSports = (id) => {
         const sportName = path.split('/sports/')[1];
         console.log("Sport Name:", sportIdMap[sportName] , sportName);
         
-        const response = await fetch(`http://15.222.64.232/v2/events?sport=${sportIdMap[sportName]}`);
+        const response = await fetch(`${BASE_URL}/events?sport=${sportIdMap[sportName]}`);
         if (!response.ok) {
           throw new Error('Failed to fetch sports');
         }
