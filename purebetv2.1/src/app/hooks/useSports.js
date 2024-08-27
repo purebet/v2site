@@ -5,8 +5,15 @@ const sportIdMap = {
   Soccer: '29',
   Tennis: '33',
   Baseball: '3',
-  Basketball:'4',
+  Basketball: '4',
+  Cricket: '8',
+  Hockey: '19',
+  Rugby: '27',
+  Combat: '22',
+  Politics: 'politics',
+  Cryptocurrency: 'cryptocurrency',
 };
+
 const useSports = (id) => {
   const path = usePathname(); 
   const [sports, setSports] = useState({});
@@ -21,7 +28,7 @@ const useSports = (id) => {
         const sportName = path.split('/sports/')[1];
         console.log("Sport Name:", sportIdMap[sportName] , sportName);
         
-        const response = await fetch(`http://15.222.64.232/v2/events?sport=${sportIdMap[sportName]}`);
+        const response = await fetch(`http://34.34.106.46/v2/events?sport=${sportIdMap[sportName]}`);
         if (!response.ok) {
           throw new Error('Failed to fetch sports');
         }
