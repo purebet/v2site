@@ -1,67 +1,75 @@
-'use client'
+'use client';
+
 import React, { useEffect, useState } from 'react';
-import { useWallet } from '@solana/wallet-adapter-react';
 import {
   clusterApiUrl,
   Connection,
   PublicKey,
   LAMPORTS_PER_SOL,
 } from "@solana/web3.js";
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import truncateAndMaskWalletAddress from '../utils/truncateAndMaskWalletAddress';
+import { useParticleConnect, useConnectKit, useAccount } from '@particle-network/connect-react-ui';
+import bs58 from 'bs58';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { IoWallet } from 'react-icons/io5';
-
 import { faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
+import truncateAndMaskWalletAddress from '../utils/truncateAndMaskWalletAddress';
+
 export default function WalletDataCard() {
-  const { publicKey, connected } = useWallet();
+  const { connect, disconnect } = useParticleConnect();
+  const connectKit = useConnectKit();
+  const account = useAccount();
+  console.log(account)
+  const isParticleActive = connectKit?.particle?.auth.isLogin();
+  const getProvider = () => isParticleActive ? null : window.phantom?.solana;
   const [solBalance, setSolBalance] = useState(0);
   const [usdcBalance, setUsdcBalance] = useState(0);
-
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(publicKey.toBase58());
+    navigator.clipboard.writeText(account?.publicAddress || '');
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000); // Reset icon after 2 seconds
+    setTimeout(() => setCopied(false), 2000);
   };
 
+  const fetchBalance = async () => {
+    const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+    const address = account || '';
+    
+    if (address) {
+      const balance = await connection.getBalance(new PublicKey(address));
+      setSolBalance(balance / LAMPORTS_PER_SOL);
+
+      const usdcMintAddress = new PublicKey('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v');
+      const tokenAccounts = await connection.getTokenAccountsByOwner(new PublicKey(address), { mint: usdcMintAddress });
+
+      if (tokenAccounts.value.length > 0) {
+        setUsdcBalance(tokenAccounts.value[0].account.data.parsed.info.tokenAmount.uiAmount);
+      } else {
+        setUsdcBalance(0);
+      }
+    }
+  };
 
   useEffect(() => {
-    if (publicKey) {
-      const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
-
-      // Fetch SOL balance
-      connection.getBalance(publicKey).then(balance => {
-        setSolBalance(balance / 1e9); // Convert from lamports to SOL
-      });
-
-      // Fetch USDC balance (assuming USDC mint address)
-      const usdcMintAddress = new PublicKey('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v');
-      connection.getTokenAccountsByOwner(publicKey, { mint: usdcMintAddress }).then(accounts => {
-        if (accounts.value.length > 0) {
-          setUsdcBalance(accounts.value[0].account.data.parsed.info.tokenAmount.uiAmount);
-        } else {
-          setUsdcBalance(0);
-        }
-      });
+    if (account) {
+      fetchBalance();
     }
-  }, [publicKey]);
+  }, [account]);
 
   return (
     <div className="flex flex-col md:mr-4 px-3.5 pt-3.5 pb-20 rounded-lg border border-solid bg-neutral-950 border-neutral-800 max-w-[271px]">
-      {connected ? (
+      {account ? (
         <>
           <div className="flex gap-2.5">
             <div className="w-32">
-             <img src="https://d2zia2w5autnlg.cloudfront.net/118907/5ffbb6f05363c-large" />
+              <img src="https://d2zia2w5autnlg.cloudfront.net/118907/5ffbb6f05363c-large" />
             </div>
             <div className="flex flex-col self-start">
               <div className="text-base font-medium text-white">Ran Name</div>
               <div className="justify-center px-1.5 py-1 mt-2 text-xs rounded-md bg-white bg-opacity-10 text-zinc-400">
-                Wallet Address: {truncateAndMaskWalletAddress(publicKey.toBase58())}   <button onClick={handleCopy} className="ml-2 focus:outline-none">
-        <FontAwesomeIcon icon={copied ? faCheck : faCopy} className="text-zinc-400" />
-      </button>
+                Wallet Address: {truncateAndMaskWalletAddress(account || '')}   
+                <button onClick={handleCopy} className="ml-2 focus:outline-none">
+                  <FontAwesomeIcon icon={copied ? faCheck : faCopy} className="text-zinc-400" />
+                </button>
               </div>
             </div>
           </div>
@@ -88,12 +96,6 @@ export default function WalletDataCard() {
               <div className="my-auto">{usdcBalance.toFixed(4)} USDC</div>
             </div>
           </div>
-          {/* <div className="flex flex-col justify-center items-start px-2.5 py-3.5 mt-2 rounded-lg border border-solid border-neutral-800">
-            <div className="flex gap-2.5">
-              <div className="text-base font-medium text-white">10 USD</div>
-              <div className="my-auto text-xs text-neutral-400">Free Bet Balance</div>
-            </div>
-          </div> */}
         </>
       ) : (
         <>
@@ -110,15 +112,6 @@ export default function WalletDataCard() {
           </div>
           <div className="mt-1.5 text-xs font-light text-center text-neutral-400">
             Purebet relies on wallet connection to establish bets and ensure your bet is live on-chain.
-          </div>
-        
-        
-          <div className="justify-center items-center px-16 py-2.5 mt-5 text-xs font-medium rounded border border-solid border-neutral-700">
-        
-          <WalletMultiButton className="">
-          <span className='hidden text-xs text-[#BFBFBF] hover:text-slate-950 md:block'>&nbsp; Connect Wallet </span>
-        </WalletMultiButton>
-        
           </div>
         </>
       )}

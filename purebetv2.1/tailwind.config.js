@@ -28,6 +28,9 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      backgroundColor: {
+        'custom-blue': 'rgba(63, 174, 255, 0.16)',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

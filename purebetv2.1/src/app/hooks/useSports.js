@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-
+import { BASE_URL } from '../utils/apicalls';
 const sportIdMap = {
   Soccer: '29',
   Tennis: '33',

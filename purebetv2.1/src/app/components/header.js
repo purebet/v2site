@@ -25,7 +25,7 @@ import {
   } from "@solana/web3.js";
   import bs58 from 'bs58';
   // import './App.css';
-  import '@particle-network/connect-react-ui/dist/index.css'
+  import './particlenetwork.css'
 const Header = ({ toggleSidebar, isSidebarOpen }) => {
   const { connect, disconnect } = useParticleConnect();
   const connectKit = useConnectKit();
@@ -126,7 +126,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
      
       <div className='flex justify-center items-center'>
         <div className='hidden md:block'>
-          {/* {!connected && <Image className='pointer-events-none'  width={20} height={20} src='/warning.svg' alt="Warning" />} */}
+          {!account && <Image className='pointer-events-none'  width={20} height={20} src='/warning.svg' alt="Warning" />}
         </div>
         {/* {connected &&  <button 
             className="md:hidden rounded-md flex justify-center items-center w-8 h-8 "
@@ -135,9 +135,13 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
             {isPopupVisible ? <HiChevronDown color={"#ffffff"} /> : <HiChevronRight color={"#ffffff"} />}
           </button> } */}
         &nbsp; &nbsp;
-        <div className='bg-white rounded-md flex justify-center items-center w-12 mx-4 md:w-24 h-8'>
+        <div className={`${ account ? " " : "bg-[#61BDFF]"} rounded-md flex justify-center items-center w-12 mx-4 md:w-32 h-8`}>
 
-       
+        <div className="flex items-center">
+  <IoWallet color={`${account?'white':"black" }`}  className={`md:block ${account ? "block mr-2" : "block"}`} />
+  <ConnectButton />
+</div>
+
           {/* {isPopupVisible && (
             <div className="fixed inset-0 bg-black bg-opacity-50 z-10 flex justify-center items-center" style={{ backdropFilter: 'blur(25px)' }}>
               <div ref={popupRef} className="absolute top-10 right-0  shadow-lg rounded-lg z-20 p-4">
@@ -154,11 +158,9 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
           
           */}
 
-<div className={`connectkit-box ${account ? 'show-all-buttons' : 'hide-all-buttons'}`}>
-              <div className="connect-btn">
-                <ConnectButton />
-              </div>
-              {account && (
+{/* <div className=''> */}
+
+              {/* {account && (
                 <div className="connected-actions text-white">
                   <div type="primary" onClick={getBalance}>
                     Get Balance
@@ -170,8 +172,8 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
                     Disconnect
                   </div>
                 </div>
-              )}
-            </div>
+              )} */}
+            {/* </div> */}
         </div>
       </div>
     </div>

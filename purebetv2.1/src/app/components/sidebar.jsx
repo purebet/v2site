@@ -68,7 +68,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <h2 className="text-sm flex text-[#989898] font-normal items-center mb-4"><FaRegHeart size={12} />&nbsp; Favourites</h2>
           <ul>
             {['premier league', 'la liga'].map(item => (
-              <li key={item} className={`flex items-center p-2 rounded-md cursor-pointer ${selectedItem === item ? 'bg-white/15' : ''}`} onClick={() => handleItemClick(formatSportName(item))}>
+              <li key={item} className={`flex items-center p-2 rounded-md cursor-pointer ${selectedItem === item ? 'bg-custom-blue text-[#3FAEFF]' : ''}`} onClick={() => handleItemClick(formatSportName(item))}>
                 {renderIcon(sportsIcons[item]?.icon, sportsIcons[item]?.src)} &nbsp; {formatSportName(item)}
               </li>
             ))}
@@ -78,7 +78,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <h2 className="text-sm flex text-[#989898] font-normal items-center mb-4"><FaArrowTrendUp size={12} />&nbsp; Top Leagues</h2>
           <ul>
             {['premier league', 'la liga', 'nba'].map(item => (
-              <li key={item} className={`flex items-center p-2 rounded-md cursor-pointer ${selectedItem === item ? 'bg-white/15' : ''}`} onClick={() => handleItemClick(formatSportName(item))}>
+              <li key={item} className={`flex items-center p-2 rounded-md cursor-pointer ${selectedItem === item ? 'bg-custom-blue text-[#3FAEFF]' : ''}`} onClick={() => handleItemClick(formatSportName(item))}>
                 {renderIcon(sportsIcons[item]?.icon, sportsIcons[item]?.src)} &nbsp; {formatSportName(item)}
               </li>
             ))}
@@ -88,7 +88,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <h2 className="text-sm flex text-[#989898] font-normal items-center mb-4"><MdOutlineSportsScore size={12} />&nbsp; All Sports</h2>
           <ul>
             {Object.keys(sportsIcons).map(item => (
-              <li key={item} className={`flex items-center mb-2 p-2 rounded-md cursor-pointer ${selectedItem === item ? 'bg-white/15' : ''}`} onClick={() => handleItemClick(formatSportName(item))}>
+              <li key={item} className={`flex items-center  mb-2 p-2 rounded-md cursor-pointer ${selectedItem === item ? 'bg-custom-blue text-[#3FAEFF]' : ''}`} onClick={() => handleItemClick(formatSportName(item))}>
                 {renderIcon(sportsIcons[item]?.icon, sportsIcons[item]?.src)} &nbsp; {formatSportName(item)}
                 <div className="ml-auto">
                   {selectedItem === item ? <HiChevronDown color={"#AAAAAA"} /> : <HiChevronRight color={"#AAAAAA"} />}
