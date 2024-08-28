@@ -34,9 +34,9 @@
   }
   
   /* src/styles/flex.css */
-  .particle-connect-ui .flex {
+  /* .particle-connect-ui .flex {
     display: flex;
-  }
+  } */
   .particle-connect-ui .flex-column {
     display: flex;
     flex-direction: column;

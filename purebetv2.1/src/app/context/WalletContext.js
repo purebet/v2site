@@ -18,7 +18,7 @@ import {
   } from "@solana/web3.js";
   import bs58 from 'bs58';
   // import './App.css';
-  import '@particle-network/connect-react-ui/dist/index.css'
+  // import '../components/particlenetwork.css'
 
 const WalletContext = createContext();
 
