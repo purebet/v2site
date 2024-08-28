@@ -30,6 +30,7 @@ module.exports = {
       },
       backgroundColor: {
         'custom-blue': 'rgba(63, 174, 255, 0.16)',
+        'custom-blue-o': 'rgba(63, 174, 255, 0.12)',
       },
       colors: {
         border: "hsl(var(--border))",

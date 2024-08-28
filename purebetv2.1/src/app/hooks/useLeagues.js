@@ -1,6 +1,6 @@
 // hooks/useLeagues.js
 import { useState, useEffect } from 'react';
-
+import { BASE_URL } from '../utils/apicalls';
 const useLeagues = () => {
   const [leagues, setLeagues] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -9,7 +9,7 @@ const useLeagues = () => {
   useEffect(() => {
     const fetchLeagues = async () => {
       try {
-        const response = await fetch('http://15.222.64.232/v2/leagues');
+        const response = await fetch(`${BASE_URL}/leagues`);
         if (!response.ok) {
           throw new Error('Failed to fetch leagues');
         }

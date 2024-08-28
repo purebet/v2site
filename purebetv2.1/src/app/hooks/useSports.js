@@ -28,7 +28,7 @@ const useSports = (id) => {
         const sportName = path.split('/sports/')[1];
         console.log("Sport Name:", sportIdMap[sportName] , sportName);
         
-        const response = await fetch(`http://34.34.106.46/v2/events?sport=${sportIdMap[sportName]}`);
+        const response = await fetch(`${BASE_URL}/events?sport=${sportIdMap[sportName]}`);
         if (!response.ok) {
           throw new Error('Failed to fetch sports');
         }
