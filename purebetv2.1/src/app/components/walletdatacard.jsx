@@ -7,13 +7,23 @@ import {
   PublicKey,
   LAMPORTS_PER_SOL,
 } from "@solana/web3.js";
-import { useParticleConnect, useConnectKit, useAccount } from '@particle-network/connect-react-ui';
+// import { useParticleConnect, useConnectKit, useAccount } from '@particle-network/connect-react-ui';
 import bs58 from 'bs58';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
 import truncateAndMaskWalletAddress from '../utils/truncateAndMaskWalletAddress';
+import FreeBetBalance from '../walletcardmobile/FreeBetBalance';
+import ReferralButton from '../walletcardmobile/ReferralButton';
+import {
+  ConnectButton,
+  ModalProvider,
+  useAccount,
+  useParticleConnect,
+  useConnectKit
+  } from '@particle-network/connect-react-ui';
+  // import './particlenetwork2.css'
 
-export default function WalletDataCard() {
+  export default function WalletDataCard() {
   const { connect, disconnect } = useParticleConnect();
   const connectKit = useConnectKit();
   const account = useAccount();
@@ -25,7 +35,7 @@ export default function WalletDataCard() {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(account?.publicAddress || '');
+    navigator.clipboard.writeText(account || '');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -60,12 +70,12 @@ export default function WalletDataCard() {
       {account ? (
         <>
           <div className="flex gap-2.5">
-            <div className="w-32">
+            {/* <div className="w-32">
               <img src="https://d2zia2w5autnlg.cloudfront.net/118907/5ffbb6f05363c-large" />
-            </div>
+            </div> */}
             <div className="flex flex-col self-start">
               <div className="text-base font-medium text-white">Ran Name</div>
-              <div className="justify-center px-1.5 py-1 mt-2 text-xs rounded-md bg-white bg-opacity-10 text-zinc-400">
+              <div className="justify-center px-1.5 py-1 mt-2 text-xs rounded-md bg-[rgba(63,174,255,0.22)] bg-opacity-10 text-[#44AFFF]">
                 Wallet Address: {truncateAndMaskWalletAddress(account || '')}   
                 <button onClick={handleCopy} className="ml-2 focus:outline-none">
                   <FontAwesomeIcon icon={copied ? faCheck : faCopy} className="text-zinc-400" />
@@ -96,6 +106,7 @@ export default function WalletDataCard() {
               <div className="my-auto">{usdcBalance.toFixed(4)} USDC</div>
             </div>
           </div>
+          <FreeBetBalance amount="10 USD" />
         </>
       ) : (
         <>
@@ -113,6 +124,12 @@ export default function WalletDataCard() {
           <div className="mt-1.5 text-xs font-light text-center text-neutral-400">
             Purebet relies on wallet connection to establish bets and ensure your bet is live on-chain.
           </div>
+          {/* <div className='text-white  my-4 box-border border border-[#353535] rounded-[3px] flex justify-center text-center'>
+            <div className='flex white'>
+           
+          <ConnectButton className="white" />
+          </div>
+          </div> */}
         </>
       )}
     </div>

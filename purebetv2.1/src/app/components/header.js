@@ -109,7 +109,10 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
     const onDisconnect = () => disconnect({ hideLoading: true });
    
   return (
-    <div className={`relative z-50 flex mb-2 m-4 rounded-xl border-2 border-[#222222] items-center justify-between p-4 bg-black text-white ${isSidebarOpen ? 'hidden md:flex' : 'flex'}`}>
+    <div className={`box-border  bg-[#121418]  border-[#294B4E] backdrop-blur-[5.7px] relative z-50 flex mb-2 m-4 rounded-xl border  items-center justify-between p-4  text-white ${isSidebarOpen ? 'hidden md:flex' : 'flex'}`}>
+      
+     
+     <div className='md:hidden'>
       <button 
         className="md:hidden flex text-2xl focus:outline-none" 
         onClick={toggleSidebar}
@@ -117,7 +120,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
         <FaBars />
         <IoIosSearch />
       </button>
-     
+     </div>
       
       <div className="text-xl font-bold">
         <img width={60} height={50} src="/pure.svg" alt="Logo" />

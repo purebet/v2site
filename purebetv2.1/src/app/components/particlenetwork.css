@@ -115,6 +115,27 @@
     text-align: center;
     /* word-break: keep-all; */
   }
+  .particle-connect-wallet-btn .white{
+    display: inline-flex;
+    background-color: #0e75fd00;
+    font-size: 10px;
+    color: #fff;
+    font-weight: 400;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all .125s ease;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    max-width: 187px;
+    height: 100%;
+    /* line-break: ; */
+    text-align: center;
+    /* word-break: keep-all; */
+  }
   @media (max-width: 768px) {
     .particle-connect-wallet-btn {
       font-size: 0px; /* Hide text */

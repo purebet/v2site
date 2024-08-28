@@ -5,8 +5,11 @@ import useSports from '../../hooks/useSports';
 import EventCard from '../../components/EventCard';
 import sportsIcons from '../../utils/sportsIcons';
 import Image from 'next/image';
+// import flagData from "../../utils/countrynametocode"
+import getFlagUrl from '../../utils/getFlagUrl';
 export default function Sports() {
-  
+
+  // Function to get the flag URL based on the league name
 
 
   const { sports, sportName, leagues, loading, error } = useSports(); // Use appropriate sport ID
@@ -31,6 +34,8 @@ console.log(leagues)
   return (
     <div className="bg-black border-2 md:mx-3 md:m-0 m-4 overflow-x-hidden rounded-lg border-[#222222] text-white p-6 max-h-screen md:min-h-screen">
       <div className="mx-auto">
+     
+
         <div className="flex items-center space-x-2 mb-4">
         {SportIcon ? <SportIcon style={{ width: '35px', height: '35px' }} /> : (sport.src && <Image src={sport.src} alt={sportName} width={35} height={35} />)}
           
@@ -42,11 +47,15 @@ console.log(leagues)
       leaguesa.map((league) => (
             <div key={league.leagueId}>
               <div
-                className="flex items-center justify-between p-4 bg-[#1c1c1c] rounded-md cursor-pointer"
+                className="flex items-center justify-between p-4 bg-[#1c1c1c] rounded-md cursor-pointer "
                 onClick={() => toggleLeague(league.leagueId)}
               >
                 <div>
-                  <h2 className="text-lg font-semibold">{league.leagueName}</h2>
+
+                  <h2 className="text-lg font-semibold flex justify-center items-center">
+                  {getFlagUrl(league.leagueName) &&  <img src={getFlagUrl(league.leagueName)} alt={league.leagueName} className="w-6 h-6" /> }
+                 {" "} &nbsp;   {league.leagueName}
+                    </h2>
                   <p className="text-sm text-muted-foreground">{league.events.length} events</p>
                 </div>
                 <div className="flex items-center space-x-2">
@@ -71,6 +80,8 @@ console.log(leagues)
         ) : (
           <p>No leagues found for {sportName}</p>
         )}
+         {/* <div class="absolute w-[1286px] h-[287px] left-[272.78px] bottom-[0] bg-gradient-to-br from-[#00F0FF]/[0.2] to-[#0057FF]/[0.2] filter blur-[133.2px] rotate-[-5.94deg] z-[]">
+</div> */}
         </div>
       </div>
     </div>

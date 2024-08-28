@@ -19,7 +19,7 @@ export default function EventCard({ event }) {
         <div className="md:hidden h- font-poppins font-semibold text-sm  text-center text-white ">
   <div>{formatTime(event.startTime)} </div>
   
-  <div className="text-[5px] text-neutral-400 -mt-1">{formatDate(event.startTime)}</div>
+  <div className="text-[10px] text-neutral-400 -mt-1">{formatDate(event.startTime)}</div>
 </div>
 
 
@@ -29,19 +29,19 @@ export default function EventCard({ event }) {
       <div className="flex md:gap-2.5 gap-[2px] sm:gap-1.5 font-medium text-white">
         <div className="flex flex-col whitespace-nowrap">
           <div className="self-center text-xs">{truncateText(event.homeTeam, 8)}</div>
-          <div className="justify-center max-w-26 min-w-26 px-9 py-2 mt-1.5 text-sm rounded border border-solid bg-zinc-900 border-white border-opacity-10 max-md:px-5">
+          <div className="justify-center max-w-26 min-w-26 px-9 py-2 mt-1.5 text-sm rounded border border-solid bg-[rgba(63,174,255,0.12)] border-white border-opacity-10 max-md:px-5">
             {odds.home}
           </div>
         </div>
         <div className="flex flex-col whitespace-nowrap">
           <div className="self-center text-xs">Draw</div>
-          <div className="justify-center max-w-26 min-w-26 px-8 py-2 mt-1.5 text-sm rounded border border-solid bg-zinc-900 border-white border-opacity-10 max-md:px-5">
+          <div className="justify-center max-w-26 min-w-26 px-8 py-2 mt-1.5 text-sm rounded border border-solid bg-[rgba(63,174,255,0.12)] border-white border-opacity-10 max-md:px-5">
             {odds.draw}
           </div>
         </div>
         <div className="flex flex-col">
           <div className="self-center text-xs">{truncateText(event.awayTeam, 8)}</div>
-          <div className="justify-center max-w-26 min-w-26 px-8 py-2 mt-1.5 text-sm whitespace-nowrap rounded border border-solid bg-zinc-900 border-white border-opacity-10 max-md:px-5">
+          <div className="justify-center max-w-26 min-w-26 px-8 py-2 mt-1.5 text-sm whitespace-nowrap rounded border border-solid bg-[rgba(63,174,255,0.12)] border-white border-opacity-10 max-md:px-5">
             {odds.away}
           </div>
         </div>

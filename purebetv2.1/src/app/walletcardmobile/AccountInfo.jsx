@@ -10,8 +10,12 @@ import {
   PublicKey,
   LAMPORTS_PER_SOL,
 } from "@solana/web3.js";
+import truncateAndMaskWalletAddress from '../utils/truncateAndMaskWalletAddress';
 import { useParticleConnect, useConnectKit, useAccount } from '@particle-network/connect-react-ui';
+import { faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
 
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function AccountInfo() {
   const { connect, disconnect } = useParticleConnect();
@@ -25,7 +29,7 @@ function AccountInfo() {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(account?.publicAddress || '');
+    navigator.clipboard.writeText(account || '');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -89,7 +93,7 @@ function AccountInfo() {
 
 
   return (
-    <section className="flex min-w-[344px] ml-6 min-h-[55%] fixed bottom-0 flex-col pb-3.5 rounded-lg border border-solid bg-neutral-950 border-zinc-800">
+    <section className="flex min-w-[344px] min-h-[55%] fixed bottom-0 flex-col pb-3.5 rounded-lg border border-solid bg-neutral-950 border-zinc-800">
       <div className="shrink-0 self-center mt-1.5 h-0.5 rounded bg-neutral-500 w-[21px]" />
       <div className="flex flex-col px-4 mt-3 w-full">
         <nav className="flex gap-3.5 justify-center items-center text-xs text-white">
@@ -109,10 +113,13 @@ function AccountInfo() {
         {activeTab === 'accountInfo' && (
           <>
             <h2 className="mt-7 text-base font-medium text-white">
-              Hairy French
-            </h2>
-            <div className="justify-center px-1.5 py-1 mt-2 text-xs bg-gray-900 rounded-md text-zinc-400">
-              Wallet Address: {account}
+            Ran Name
+           </h2>
+            <div className="justify-center px-1.5 py-1 mt-2 text-xs bg-[rgba(63,174,255,0.22)] rounded-md text-[#44AFFF]">
+              Wallet Address: {truncateAndMaskWalletAddress(account) || " "} 
+               <button onClick={handleCopy} className="ml-2 focus:outline-none">
+                  <FontAwesomeIcon icon={copied ? faCheck : faCopy} className="text-zinc-400" />
+                </button>
             </div>
             <h3 className="mt-3.5 text-xs text-neutral-400">Account Balance</h3>
             {/* {balanceItems.map((item, index) => (
