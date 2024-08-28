@@ -115,6 +115,12 @@
     text-align: center;
     /* word-break: keep-all; */
   }
+  @media (max-width: 768px) {
+    .particle-connect-wallet-btn {
+      font-size: 0px; /* Hide text */
+      padding: 3px; 
+    }
+  }
   .particle-connect-wallet-btn:hover {
     transform: scale(1.01);
   }
