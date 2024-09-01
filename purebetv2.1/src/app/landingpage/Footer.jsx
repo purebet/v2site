@@ -18,7 +18,7 @@ export default function Footer() {
         <Image alt="alt" src={footer_gradient_mob} className="w-full h-[500px] pointer-events-none" />
       </div>
 
-      <div className="px-6 pt-16 mt-10 md:mt-0 sm:px-12 md:px-20 md:pb-12 lg:px-28">
+      <div className="px-6 z-10 pt-16 mt-10 md:mt-0 sm:px-12 md:px-20 md:pb-12 lg:px-28">
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
           <div className="flex flex-col items-center md:flex-row">
             <Image
@@ -26,9 +26,9 @@ export default function Footer() {
               className="w-[127px] h-[82px] md:w-[147px] md:h-[95px] mb-8 md:mb-0 pointer-events-none"
             />
             <div className="flex flex-col items-center gap-6 mb-4 text-sm md:items-start font-poppins md:mb-0">
-              <div className="flex gap-6">
+              <div className="flex z-10 gap-6">
                 <a href="https://docs.purebet.io/"><p>Docs</p> </a>
-                <a href="/onboardinghttps://swipe.purebet.io/"><p>Onboarding</p></a>
+                <a href="/onboarding"><p>Onboarding</p></a>
                 <a href=""><p>Blog</p></a>
                 <a href="https://swipe.purebet.io/"><p>Try Swipe!</p></a>
               </div>
@@ -43,7 +43,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <div className="flex gap-4 mb-5 md:mb-0">
+          <div className="flex gap-4 mb-5 z-10 md:mb-0">
             <a href=""><Image alt="alt"  src={ig} /> </a>
             <a href=""><Image alt="alt" src={medium} /></a>
             <a href="https://x.com/Purebet_io"><Image alt="alt" src={x} /></a>
