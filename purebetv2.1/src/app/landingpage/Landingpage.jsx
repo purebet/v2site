@@ -44,7 +44,7 @@ export default function Landingpage(){
       <Hero />
       <SectionTwo />
       <SectionThree />
-      <SectionFour />
+      <SectionFour  />
       <SectionFive />
       <Footer />
     </main>

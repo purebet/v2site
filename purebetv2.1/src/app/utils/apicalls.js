@@ -13,6 +13,29 @@ export const getActiveLeagues = async () => {
   }
 };
 
+export const getEventDetail = async (eventId) => {
+  try {
+    console.log(eventId)
+    const response = await axios.get(`${BASE_URL}/events?event=${eventId.toString()}`);
+    console.log(response.data)
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching the event :', error);
+    throw error;
+  }
+};
+
+export const getLeagueName = async (leagueId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/events?leagues=${leagueId}`);
+    const league = response.data.find(league => league.leagueId === leagueId.toString());
+    return league ? league.leagueName : 'Unknown League';
+  } catch (error) {
+    console.error('Error fetching league name:', error);
+    throw error;
+  }
+};
+
 export const getHighlights = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/highlights`);
@@ -83,3 +106,5 @@ export const getSportEvents = async (sportId) => {
     throw error;
   }
 };
+
+

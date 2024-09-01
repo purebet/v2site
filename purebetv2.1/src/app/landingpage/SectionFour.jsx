@@ -7,7 +7,7 @@ import right from "../../../public/sec_4_right.svg";
 
 export default function SectionFour() {
   return (
-    <main className="relative mt-16">
+    <main id="about" className="relative mt-16">
       <div className="absolute top-[45%] left-0 hidden md:block z-20">
         <Image alt="alt" src={left} className="" />
       </div>
@@ -44,12 +44,14 @@ export default function SectionFour() {
         </div>
         <div className="relative md:top-[-40px] p-[1px] rounded-[3px] bg-gradient-to-r from-[#00a3ff] via-[#cc4c4c] to-[#7000ff]">
           <div className="bg-[#3D3D3D] p-1 rounded-[3px] ">
+            <a href="/onboarding">
             <button className="rounded-[3px]">
               <div className="flex items-center gap-2 bg-white text-[#434343] px-2 py-[6px] rounded-[3px]">
                 <p className="font-poppins">Onboarding</p>
                 <Image alt="alt" src={arrow} />
               </div>
             </button>
+            </a>
           </div>
         </div>
       </div>

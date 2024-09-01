@@ -27,10 +27,10 @@ export default function Footer() {
             />
             <div className="flex flex-col items-center gap-6 mb-4 text-sm md:items-start font-poppins md:mb-0">
               <div className="flex gap-6">
-                <p>Docs</p>
-                <p>Onboarding</p>
-                <p>Blog</p>
-                <p>Try Swipe!</p>
+                <a href="https://docs.purebet.io/"><p>Docs</p> </a>
+                <a href="/onboardinghttps://swipe.purebet.io/"><p>Onboarding</p></a>
+                <a href=""><p>Blog</p></a>
+                <a href="https://swipe.purebet.io/"><p>Try Swipe!</p></a>
               </div>
 
               <div className="max-w-min border-[1px] py-1 px-4 border-[#A5A5A5] rounded-full ">
@@ -44,10 +44,10 @@ export default function Footer() {
             </div>
           </div>
           <div className="flex gap-4 mb-5 md:mb-0">
-            <Image alt="alt"  src={ig} />
-            <Image alt="alt" src={medium} />
-            <Image alt="alt" src={x} />
-            <Image alt="alt" src={discord_footer} />
+            <a href=""><Image alt="alt"  src={ig} /> </a>
+            <a href=""><Image alt="alt" src={medium} /></a>
+            <a href="https://x.com/Purebet_io"><Image alt="alt" src={x} /></a>
+            <a href="https://discord.com/invite/AG7J2kzkpV"><Image alt="alt" src={discord_footer} /></a>
           </div>
         </div>
         <div className="flex items-center justify-center gap-1 mt-5">

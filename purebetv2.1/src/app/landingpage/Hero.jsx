@@ -87,11 +87,11 @@ export default function Hero() {
             <button onClick={toggleNavbar}>&times;</button>
           </div>
           <ul className="mt-8 space-y-4">
-            <li><a href="#home">Home</a></li>
+            <li><a href="/sports/home">Home</a></li>
             <li><a href="#features">Features</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#docs">Docs</a></li>
-            <li><a href="#onboarding">Onboarding</a></li>
+            <li><a href="https://docs.purebet.io/">Docs</a></li>
+            <li><a href="/onboarding">Onboarding</a></li>
           </ul>
         </div>
         </div>
@@ -213,21 +213,23 @@ export default function Hero() {
           <Image alt="alt" src={logo} className="w-16 h-10"></Image>
 
           <div className="items-center justify-center hidden gap-8 md:flex">
-            <p className="text-white cursor-pointer font-poppins">Home</p>
-            <div className="flex gap-1 features_div">
+         <a href="/sports/home">   <p className="text-white cursor-pointer font-poppins">Home</p> </a>
+         <a href="#features">   <div className="flex gap-1 features_div">
               <p className="text-white cursor-pointer font-poppins">Features</p>
               <Image alt="alt" src={arrow} className="arrow_img" />
-            </div>
-            <p className="text-white cursor-pointer font-poppins">About</p>
-            <p className="text-white cursor-pointer font-poppins">Docs</p>
-            <p className="text-white cursor-pointer font-poppins">Onboarding</p>
+            </div> </a>
+          <a href="#about">  <p className="text-white cursor-pointer font-poppins">About</p> </a>
+          <a href="https://docs.purebet.io/">  <p className="text-white cursor-pointer font-poppins">Docs</p> </a>
+          <a href="/onboarding">  <p className="text-white cursor-pointer font-poppins">Onboarding</p> </a>
           </div>
 
           <div className="items-center justify-center hidden gap-6 md:flex">
-            <p className="text-white cursor-pointer font-poppins">Login</p>
+            {/* <p className="text-white cursor-pointer font-poppins">Login</p> */}
+          <a href="/sports/home">
             <button className="px-3 py-[5px] text-black bg-white rounded-3xl font-poppins font-medium">
               Get started
             </button>
+            </a>
           </div>
           
           <>
@@ -243,11 +245,11 @@ export default function Hero() {
             <button onClick={toggleNavbar}>&times;</button>
           </div>
           <ul className="mt-8 space-y-4">
-            <li><a href="#home">Home</a></li>
+          <li><a href="/sports/home">Home</a></li>
             <li><a href="#features">Features</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#docs">Docs</a></li>
-            <li><a href="#onboarding">Onboarding</a></li>
+            <li><a href="https://docs.purebet.io/">Docs</a></li>
+            <li><a href="/onboarding">Onboarding</a></li>
           </ul>
         </div>
       )}
@@ -321,7 +323,7 @@ export default function Hero() {
             <p className="font-inter text-[10px] ">Join Our Discord Community</p>
             <Image alt="alt" src={discord} className="rounded-r-xl" />
           </div> */}
-
+<a href="https://discord.com/invite/AG7J2kzkpV">
 <div
       className="group relative z-[999999] flex items-center w-[200px] h-[39px] border border-[#707070] backdrop-blur-sm rounded-[10px] box-border overflow-hidden"
       onClick={() => setIsClicked(!isClicked)}
@@ -340,6 +342,7 @@ export default function Hero() {
         <FaDiscord color="white" />
       </div>
     </div>
+    </a>
         </div>
         <div className="absolute left-[60%] md:left-[53%] mt-4 flex gap-1 items-start">
           <Image alt="alt" src={green_cursor} />
