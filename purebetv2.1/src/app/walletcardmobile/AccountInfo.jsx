@@ -156,6 +156,10 @@ function AccountInfo() {
     }
   };
 
+  const generateReferralLink = (code) => {
+    return `https://exchange.purebet.io/ref?code=${code}`;
+  };
+
   return (
     <section className="flex min-w-[344px] min-h-[55%] fixed bottom-0 flex-col pb-3.5 rounded-lg border border-solid bg-neutral-950 border-zinc-800">
       <div className="shrink-0 self-center mt-1.5 h-0.5 rounded bg-neutral-500 w-[21px]" />
@@ -252,7 +256,13 @@ function AccountInfo() {
               <div className="max-h-[70px] overflow-y-auto pr-2 mb-2">
         {existingCodes.length > 0 ? (
           existingCodes.map((code, index) => (
-            <div key={index} className="bg-[#3D3D3D] text-white p-2 rounded mb-2">{code}</div>
+            <div key={index} className="bg-[#3D3D3D] text-white p-2 rounded mb-2">
+              <div>{code}</div>
+              <div className="text-sm text-gray-400">
+      Referral Link: {generateReferralLink(code)}
+        </div>
+            </div>
+            
           ))
         ) : (
           <div className="text-white">No existing codes found.</div>
