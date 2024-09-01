@@ -119,6 +119,7 @@ body {
     width: 256.9px;
     height: 232.02px;
     left: 0;
+    z-index: -10;
     top: -10px;
     background-color: rgba(0, 35, 103, 0.4);
     filter: blur(64.4px);

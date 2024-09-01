@@ -27,6 +27,7 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+          'gradient-stroke': 'linear-gradient(180deg, #0046CF, #002469)',
       },
       backgroundColor: {
         'custom-blue': 'rgba(63, 174, 255, 0.16)',
@@ -93,5 +94,16 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate")  ,  function ({ addUtilities }) {
+    addUtilities({
+      '.gradient-stroke': {
+        'background-clip': 'text',
+        '-webkit-background-clip': 'text',
+        '-webkit-text-fill-color': 'transparent',
+        'border': '2px solid',
+        'border-image-source': 'linear-gradient(180deg, #0046CF, #002469)',
+        'border-image-slice': '1',
+      },
+    });
+  },],
 }

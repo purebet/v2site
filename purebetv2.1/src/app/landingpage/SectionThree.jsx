@@ -19,7 +19,7 @@ import dot from "../../../public/plus_dot.svg";
 import Image from "next/image";
 export default function SectionThree() {
   return (
-    <main className="relative mt-14">
+    <main id="features"  className="relative mt-14">
       <div className="absolute top-[0%] w-[53px] h-[53px] md:w-[89px] md:h-[89px] left-[-2%] md:top-[-5%] md:left-[3%] z-30">
         <div className="relative">
           <Image alt="alt" src={plus} />
@@ -109,8 +109,9 @@ export default function SectionThree() {
               </div>
             </div>
           </div>
-
           <div className="relative h-[347px] md:h-[398px] md:w-1/3 sec_3_card rounded-xl">
+          <a target="_blank" href="https://docs.purebet.io/">
+
             <Image alt="alt" src={man} className="absolute right-0 z-20 rounded-xl" />
             <Image
               src={noise}
@@ -126,7 +127,9 @@ export default function SectionThree() {
                 </div>
               </div>
             </div>
+            </a>
           </div>
+          
         </div>
       </div>
     </main>
