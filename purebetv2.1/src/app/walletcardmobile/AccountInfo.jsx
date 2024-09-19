@@ -5,6 +5,7 @@ import BalanceItem from './BalanceItem';
 import FreeBetBalance from './FreeBetBalance';
 import ReferralButton from './ReferralButton';
 import BetCard from './BetCard';
+import { TOKEN_PROGRAM_ID, AccountLayout } from '@solana/spl-token';
 import {
   clusterApiUrl,
   Connection,
@@ -15,6 +16,7 @@ import truncateAndMaskWalletAddress from '../utils/truncateAndMaskWalletAddress'
 import { useParticleConnect, useConnectKit, useAccount } from '@particle-network/connect-react-ui';
 import { faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import RandomName from '../utils/RandomName';
 
 function AccountInfo() {
   const { connect, disconnect } = useParticleConnect();
@@ -45,18 +47,25 @@ function AccountInfo() {
   };
 
   const fetchBalance = async () => {
-    const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+    const connection = new Connection('https://mainnet.helius-rpc.com/?api-key=a95e3765-35c7-459e-808a-9135a21acdf6', 'confirmed');
     const address = account || '';
-    
+  
     if (address) {
       const balance = await connection.getBalance(new PublicKey(address));
       setSolBalance(balance / LAMPORTS_PER_SOL);
-
+  
       const usdcMintAddress = new PublicKey('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v');
       const tokenAccounts = await connection.getTokenAccountsByOwner(new PublicKey(address), { mint: usdcMintAddress });
-
+  
       if (tokenAccounts.value.length > 0) {
-        setUsdcBalance(tokenAccounts.value[0].account.data.parsed.info.tokenAmount.uiAmount);
+        // Decode the account data using the AccountLayout from @solana/spl-token
+        const accountInfo = tokenAccounts.value[0].account.data;
+        const data = AccountLayout.decode(accountInfo);
+  
+        // Get the amount of tokens (USDC)
+        const usdcBalanceRaw = data.amount; // This is a raw BigInt
+        const usdcBalance = Number(usdcBalanceRaw) / Math.pow(10, 6); // Convert BigInt to Number and divide
+        setUsdcBalance(usdcBalance);
       } else {
         setUsdcBalance(0);
       }
@@ -187,7 +196,7 @@ function AccountInfo() {
         {activeTab === 'accountInfo' && (
           <>
             <h2 className="mt-7 text-base font-medium text-white">
-              Ran Name
+              <RandomName />
             </h2>
             <div className="justify-center px-1.5 py-1 mt-2 text-xs bg-[rgba(63,174,255,0.22)] rounded-md text-[#44AFFF]">
               Wallet Address: {truncateAndMaskWalletAddress(account) || " "} 

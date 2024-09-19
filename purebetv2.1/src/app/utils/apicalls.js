@@ -1,7 +1,7 @@
 // api.js
 import axios from 'axios';
 
-export const BASE_URL = 'http://34.34.106.46/v2';
+export const BASE_URL = 'http://3.96.151.175/v2';
 
 export const getActiveLeagues = async () => {
   try {

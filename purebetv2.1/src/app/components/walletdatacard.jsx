@@ -8,6 +8,7 @@ import {
   LAMPORTS_PER_SOL,
 } from "@solana/web3.js";
 // import { useParticleConnect, useConnectKit, useAccount } from '@particle-network/connect-react-ui';
+import { TOKEN_PROGRAM_ID, AccountLayout } from '@solana/spl-token';
 import bs58 from 'bs58';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
@@ -21,6 +22,7 @@ import {
   useParticleConnect,
   useConnectKit
   } from '@particle-network/connect-react-ui';
+import RandomName from '../utils/RandomName';
   // import './particlenetwork2.css'
 
   export default function WalletDataCard() {
@@ -39,26 +41,33 @@ import {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-
   const fetchBalance = async () => {
-    const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+    const connection = new Connection('https://mainnet.helius-rpc.com/?api-key=a95e3765-35c7-459e-808a-9135a21acdf6', 'confirmed');
     const address = account || '';
-    
+  
     if (address) {
       const balance = await connection.getBalance(new PublicKey(address));
       setSolBalance(balance / LAMPORTS_PER_SOL);
-
+  
       const usdcMintAddress = new PublicKey('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v');
       const tokenAccounts = await connection.getTokenAccountsByOwner(new PublicKey(address), { mint: usdcMintAddress });
-
+  
       if (tokenAccounts.value.length > 0) {
-        setUsdcBalance(tokenAccounts.value[0].account.data.parsed.info.tokenAmount.uiAmount);
+        // Decode the account data using the AccountLayout from @solana/spl-token
+        const accountInfo = tokenAccounts.value[0].account.data;
+        const data = AccountLayout.decode(accountInfo);
+  
+        // Get the amount of tokens (USDC)
+        const usdcBalanceRaw = data.amount; // This is a raw BigInt
+        const usdcBalance = Number(usdcBalanceRaw) / Math.pow(10, 6); // Convert BigInt to Number and divide
+        setUsdcBalance(usdcBalance);
       } else {
         setUsdcBalance(0);
       }
     }
   };
 
+  
   useEffect(() => {
     if (account) {
       fetchBalance();
@@ -74,7 +83,7 @@ import {
               <img src="https://d2zia2w5autnlg.cloudfront.net/118907/5ffbb6f05363c-large" />
             </div> */}
             <div className="flex flex-col self-start">
-              <div className="text-base font-medium text-white">Ran Name</div>
+              <div className="text-base font-medium text-white"><RandomName /></div>
               <div className="justify-center px-1.5 py-1 mt-2 text-xs rounded-md bg-[rgba(63,174,255,0.22)] bg-opacity-10 text-[#44AFFF]">
                 Wallet Address: {truncateAndMaskWalletAddress(account || '')}   
                 <button onClick={handleCopy} className="ml-2 focus:outline-none">

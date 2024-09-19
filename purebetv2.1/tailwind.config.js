@@ -19,6 +19,9 @@ module.exports = {
         "2xl": "1400px",
       },
       screens: {
+        "tab": "600px",
+      },
+      screens: {
         "390px": "390px",
       },
     },

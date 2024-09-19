@@ -66,7 +66,8 @@ return (
 
 
     const getBalance = async  ( )=> {
-        const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+        const connection = new Connection('https://mainnet.helius-rpc.com/?api-key=a95e3765-35c7-459e-808a-9135a21acdf6', 'confirmed');
+
         const phantomProvider = getProvider();
         const address = phantomProvider?.isPhantom ? phantomProvider?.publicKey.toString(): await connectKit.particle.solana.getAddress();
         console.log(address)
