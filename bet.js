@@ -139,8 +139,19 @@ async function placeBet(idObj, betInfo, addrs, fixtures, connection) {
     console.log(fixtures)
     let output = {showNow: [], listen: null};
     let transaction;
-    if(usdcBalance == 0 || solBalance == 0){
-      //free bet or sol free bet, call betBuilder lambda. betBuilder lambda needs to return the proper output.showNow list
+    if(usdcBalance == 0){
+      //free bet or
+    } 
+    else if(solBalance < 0.0018792){
+      // sol free bet, call betBuilder lambda. betBuilder lambda needs to return the proper output.showNow list
+      let payload = {idObj, betInfo, fixtures};
+      payload.addrs = {
+        bettor: addrs.bettor.toBase58(),
+        usdcATA: addrs.usdcATA.toBase58()
+      }
+      let txResp = await axios.post("https://muj8auyny5.execute-api.ap-northeast-1.amazonaws.com/default/betBuilderv2?type=solFree", payload);
+      transaction = solanaWeb3.Transaction.from(txResp.data.tx);
+      output.listen = txResp.data.listen;
     }
     else{
       //this also needs to handle pb matching a market maker, monaco, aver. That info will come from state.selectedOdd and be cut off depending on which liquidity is used up. stake will be deducted 
