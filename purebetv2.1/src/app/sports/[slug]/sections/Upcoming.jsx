@@ -17,7 +17,10 @@ export default function Upcoming() {
         leagues.map((event) => {
           const odds = getOdds(event);
           return (
-            <div key={event.event} className="flex gap-5 justify-between px-3.5 py-2 mt-3 w-full text-center rounded-md border border-solid shadow-sm border-zinc-800 max-md:flex-wrap max-md:pr-5 max-md:max-w-full">
+            <div 
+            onClick={() => window.location.href = `/events?event=${event.event}`}
+            key={event.event} className="flex gap-5 justify-between px-3.5 py-2 mt-3 w-full text-center rounded-md border border-solid shadow-sm border-zinc-800 max-md:flex-wrap max-md:pr-5 max-md:max-w-full">
+           
               <div className="flex flex-col my-auto items-start">
                 <div className=" text-neutral-400">
                   <span className="text-zinc-300 text-sm md:text-xl">{event.eventName}</span>
@@ -46,6 +49,7 @@ export default function Upcoming() {
                   </div>
                 </div>
               </div>
+              
             </div>
           );
         })

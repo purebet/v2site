@@ -12,7 +12,7 @@ export default function EventCard({ event }) {
 
   return (
     <Link href={`/events?event=${event.event}`}>
-    <div className="flex gap-5 justify-between px-3.5 py-2 mt-3 w-full text-center rounded-md border border-solid shadow-sm border-zinc-800 max-md:flex-wrap max-md:pr-5 max-md:max-w-full">
+    <div className="flex gap-0 md:gap-5 justify-between px-3.5 py-2 mt-3 w-full text-center rounded-md border border-solid shadow-sm border-zinc-800 max-md:flex-wrap max-md:pr-5 max-md:max-w-full">
       
       <div  className="flex flex-col my-auto items-start">
         <div className="text-xl hidden md:flex  text-neutral-400">
@@ -23,7 +23,7 @@ export default function EventCard({ event }) {
              </div>
 
 
-          <div className="text-zinc-300 mx-10 ">{event.eventName}</div>
+          <div className="text-zinc-300 mx-10 text-xs">{event.eventName}</div>
         </div>
         <div className="mt-1.5 text-xs font-medium text-neutral-500 self-start">
         <div className="md:hidden h- font-poppins font-semibold text-sm  text-center text-white ">

@@ -12,6 +12,7 @@ import { formatDate , formatTime } from '../utils/formatDate';
 import sportsIcons from '../utils/sportsIcons';
 import getFlagUrl from '../utils/getFlagUrl';
 import BettingMarketsComponent from './BettingMarketsComponent';
+import BettingEvents from './BettingEvents';
 export default function Component() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [eventDetails, setEventDetails] = useState(null);
@@ -71,8 +72,8 @@ export default function Component() {
   {/* Display event details */}
   {eventDetails ? (
     
-            <div className="p-5 mx-4 text-white">
-               <div className="flex items-center">
+            <div className="text-white">
+               <div className="flex items-center  p-5 pb-0 mx-4 ">
       <div className="flex-shrink-0 w-[35px] h-[35px] mr-2"
        style={{
         background: 'linear-gradient(180deg, #FFFFFF 24.77%, #575757 100%)',
@@ -104,7 +105,7 @@ export default function Component() {
         )}
       </div>
       <div 
-        className="max-w-[500px] h-[29px] md:text-2xl text-sm font-semibold leading-[29px] font-inter"
+        className="max-w-[500px] h-[29px] md:text-2xl text-xs font-semibold leading-[29px] font-inter"
         style={{
           background: 'linear-gradient(180deg, #FFFFFF 24.77%, #575757 100%)',
           WebkitBackgroundClip: 'text',
@@ -117,16 +118,21 @@ export default function Component() {
       </div>    </div>
               {/* league name */}
               {leagueName && getFlagUrl(leagueName) && (
-        <div className='flex items-center text-[15px] mt-4 mx-4'>
+        <div className='flex p-5 pt-0 pb-0 mx-4  items-center text-[9px] md:text-[15px] mt-4 md:mx-8'>
           <img src={getFlagUrl(leagueName)} alt={leagueName} className="w-6 h-6 mr-2" />
           <div className='text-[#7D7D7D]'>{leagueName}</div>
           <span className="text-[#7D7D7D] text-2xl mx-2">&bull;</span>
          
-          <div> <span className=" text-neutral-400 mx-2">{formatDate(eventDetails.startTime)}</span>{formatTime(eventDetails.startTime)}</div>
+          <div> <span className=" text-neutral-400 mx-2">
+            
+            {formatDate(eventDetails.startTime)}</span>
+          
+          {formatTime(eventDetails.startTime)}</div>
         </div>
       )}
+      <div className='ms:p-5 md:mx-4'>
 <BettingMarketsComponent eventDetails={eventDetails} />
-
+</div>
             </div>
           ) : (
             <p className="text-white">Loading event details...</p>
