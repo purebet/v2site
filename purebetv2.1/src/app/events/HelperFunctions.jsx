@@ -88,74 +88,7 @@ const FullTime = ({ title, data, showLiquidity = false, homeTeam, awayTeam }) =>
   };
  
 
-  const OU = ({ title, data, showLiquidity = false }) => {
-    // console?.log(data, title, showLiquidity);
-    const [selectedLine, setSelectedLine] = useState(data[0]?.line);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  
-    const selectedData = data?.find(item => item?.line === selectedLine);
-  
-    return (
-      <div className="mb-4 mt-4 md:mt-0 rounded-lg overflow-hidden">
-        <div className="text-sm text-white font-semibold md:p-3 p-1 flex items-center">
-          <span className="text-[#7D7D7D] opacity-65 text-2xl">&bull;</span>
-          <span className="ml-1 font-poppins opacity-65">{title}</span>
-          {showLiquidity && (
-            <div className="ml-auto bg-white bg-opacity-10 px-2 md:px-4 py-1 flex items-center gap-1 rounded-full">
-              <button className="md:text-xs text-[10px] text-white">Show Liquidity</button>
-              <MdOutlineInsertLink color="white" />
-            </div>
-          )}
-        </div>
-        <div className="md:p-4">
-          <div className="flex flex-col items-center mb-2">
-           
-            {isDropdownOpen && (
-              <div className="mt-1 w-24 bg-[#132C42] rounded absolute z-10">
-                {data?.map((item) => (
-                  <button
-                    key={item?.line}
-                    onClick={() => {
-                      setSelectedLine(item?.line);
-                      setIsDropdownOpen(false);
-                    }}
-                    className="block w-full text-left text-white p-2 hover:bg-[#1e3a54]"
-                  >
-                    {item?.line}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-          <div className="flex justify-center items-center gap-2 md:gap-8">
-            <div className="text-center">
-              <div className="text-xs text-white">Over</div>
-              <div className="bg-[#132C42] w-[94px] text-white p-2 rounded mt-1">
-                {selectedData?.side0[0][0]}
-              </div>
-            </div>
-            <div className='text-center'>
-                <div>&nbsp;</div>
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center justify-between gap-2 text-white p-2 rounded"
-            >
-              <span>{selectedLine}</span>
-              <FaAngleDown />
 
-            </button>
-            </div>
-            <div className="text-center">
-              <div className="text-xs text-white">Under</div>
-              <div className="bg-[#132C42] w-[94px] text-white p-2 rounded mt-1">
-                {selectedData?.side1[0][0]}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   const ResultandBothTeamstoScore = ({ title, data, showLiquidity = false, homeTeam, awayTeam }) => {
     if (!data || Object?.keys(data)?.length === 0) {
@@ -221,35 +154,29 @@ const FullTime = ({ title, data, showLiquidity = false, homeTeam, awayTeam }) =>
       </div>
     );
   };
-  
-  
 
-  const ResultandTotal = ({ title, data, showLiquidity = false }) => {
-    // console?.log(data, title, showLiquidity);
-  // Extract the first market to get the line
-//   // console?.log(data?.line)
-    // Extract team names from the data keys
-    const teams = Object?.keys(data)
-      ?.map(key => key?.split(' & ')[0])
-      ?.filter((value, index, self) => self?.indexOf(value) === index);
   
-    // Assuming the first team is home and the second is away
+  const ResultandTotal = ({ title, data, showLiquidity = false }) => {
+    // Extract team names from the data keys
+    const teams = Array.from(new Set(Object.keys(data).map(key => key.split(' & ')[0]))).filter(team => team !== 'Draw');
     const [homeTeam, awayTeam] = teams;
-  // Extract the market line from the first key (or any relevant key)
-const marketLine = Object?.keys(data)[0]?.split(' ')?.pop(); // This will give you '2?.5'
+  
+    // Extract the market line (e.g., "2.5") from the first key
+    const marketLine = Object.keys(data)[0].split(' ').pop();
+  
     const createDataObject = (condition) => {
-      return teams?.reduce((acc, team) => {
-        const key = `${team} & ${condition}`;
-        acc[team] = data[key] || 0;
-        return acc;
-      }, {});
+      return {
+        [homeTeam]: data[`${homeTeam} & ${condition}`] || 0,
+        'Draw': data[`Draw & ${condition}`] || 0,
+        [awayTeam]: data[`${awayTeam} & ${condition}`] || 0
+      };
     };
   
-    const overData = createDataObject('Over 2?.5');
-    const underData = createDataObject('Under 2?.5');
+    const overData = createDataObject(`Over ${marketLine}`);
+    const underData = createDataObject(`Under ${marketLine}`);
   
     return (
-      <div className=" text-white p-4 rounded-lg">
+      <div className="text-white p-4 rounded-lg">
         {/* Header */}
         <div className="text-sm text-white font-semibold p-3 flex items-center">
           <div className="flex items-center">
@@ -268,27 +195,27 @@ const marketLine = Object?.keys(data)[0]?.split(' ')?.pop(); // This will give y
         <div className="grid grid-cols-4 gap-2">
           {/* Empty corner to align labels */}
           <div></div>
-          <div className="text-center w-[94px] text-xs ">{homeTeam}</div>
-          <div className="text-center w-[94px] text-xs ">Draw</div>
-          <div className="text-center w-[94px] text-xs ">{awayTeam}</div>
+          <div className="text-center w-[94px] text-xs">{homeTeam}</div>
+          <div className="text-center w-[94px] text-xs">Draw</div>
+          <div className="text-center w-[94px] text-xs">{awayTeam}</div>
   
           {/* Over Row */}
-          <div  className="flex items-center justify-center">
-        <div className="flex items-center justify-center bg-[#132C42]  text-xs h-7 rounded w-12">Over</div>
-        </div>
-                  {teams?.map((team) => (
+          <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center bg-[#132C42] text-xs h-7 rounded w-12">Over</div>
+          </div>
+          {[homeTeam, 'Draw', awayTeam].map((team) => (
             <div key={`over-${team}`} className="bg-[#132C42] w-[94px] text-white p-2 rounded mt-1 text-center">
-              {overData[team]?.toFixed(2)}
+              {overData[team].toFixed(2)}
             </div>
           ))}
   
           {/* Under Row */}
-          <div  className="flex items-center justify-center">
-        <div className="flex items-center justify-center bg-[#132C42]  text-xs h-7 rounded w-12">Under</div>
-        </div>
-                  {teams?.map((team) => (
+          <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center bg-[#132C42] text-xs h-7 rounded w-12">Under</div>
+          </div>
+          {[homeTeam, 'Draw', awayTeam].map((team) => (
             <div key={`under-${team}`} className="bg-[#132C42] w-[94px] text-white p-2 rounded mt-1 text-center">
-              {underData[team]?.toFixed(2)}
+              {underData[team].toFixed(2)}
             </div>
           ))}
         </div>
@@ -635,5 +562,5 @@ const BothTeamstoScoreandTotal = ({ title, data, showLiquidity = false }) => {
     );
   };
 
-  export { BTTS, FullTime, OU, ResultandBothTeamstoScore, ResultandTotal, BothTeamstoScoreandTotal, HalfTimeFullTime, TeamOverUnder, CorrectScore };
+  export { BTTS, FullTime, ResultandBothTeamstoScore, ResultandTotal, BothTeamstoScoreandTotal, HalfTimeFullTime, TeamOverUnder, CorrectScore };
   
