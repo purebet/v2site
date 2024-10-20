@@ -85,7 +85,7 @@ const BettingEvents = ({ eventDetails }) => {
   const [selectedMarket, setSelectedMarket] = useState('Full Time');
 
  
-  const getMarketData = (marketType, period = '1') => {
+  const getMarketData = (marketType, period =  '0') => {
     const periodData = eventDetails?.periods?.[period];
     if (!periodData || !periodData[marketType]) return null;
 
