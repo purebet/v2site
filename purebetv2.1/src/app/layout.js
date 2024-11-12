@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import { Inter as FontSans } from "next/font/google"
 import "./globals.css";
 import "./globals2.css";
+import { Suspense } from "react";
 import { cn } from "@/lib/utils"
 import CustomCursor from "./CustomCursor";
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
  
   return (
     <html className="bg-black custom-cursor overflow-x-hidden" lang="en">
+    <Suspense fallback={<div>Loading...</div>}>
 
       <body  
       className={cn(
@@ -33,6 +35,7 @@ export default function RootLayout({ children }) {
         {children}
         </WalletProviderComponent>
         </body>
+        </Suspense>
     </html>
   );
 }

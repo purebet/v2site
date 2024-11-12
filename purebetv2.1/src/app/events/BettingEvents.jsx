@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MdOutlineInsertLink } from "react-icons/md";
 import AsianHandicap from './components/AsianHandicap';
-import { BTTS, FullTime, OU, ResultandBothTeamstoScore, ResultandTotal, BothTeamstoScoreandTotal, HalfTimeFullTime, TeamOverUnder } from './HelperFunctions';
+import { BTTS, FullTime, ResultandBothTeamstoScore, ResultandTotal, BothTeamstoScoreandTotal, HalfTimeFullTime, TeamOverUnder } from './HelperFunctions';
 const BettingMarket = ({ title, data, showLiquidity = false }) => {
   if (!data || Object.keys(data).length === 0) {
     return null;

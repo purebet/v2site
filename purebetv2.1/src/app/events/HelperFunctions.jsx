@@ -3,6 +3,7 @@ import React from 'react';
 import { MdOutlineInsertLink } from "react-icons/md";
 import { FaAngleDown } from "react-icons/fa6";
 import { useState } from 'react';
+import BetModal from './BetModal';
 
 const BTTS = ({ title, data, showLiquidity = false }) => {
   if (!data || !data?.side0 || !data?.side1) {
@@ -41,52 +42,101 @@ const BTTS = ({ title, data, showLiquidity = false }) => {
   );
 };
 
-const FullTime = ({ title, data, showLiquidity = false, homeTeam, awayTeam }) => {
-    if (!data || Object?.keys(data)?.length === 0) {
-      return null;
+const FullTime = ({ title, data, showLiquidity = false, homeTeam, awayTeam, eventDetails }) => {
+  const [isBetModalOpen, setIsBetModalOpen] = useState(false);
+  const [selectedBet, setSelectedBet] = useState(null);
+
+  if (!data || Object.keys(data).length === 0) {
+    return null;
+  }
+
+  const getTeamName = (key) => {
+    switch (key.toLowerCase()) {
+      case 'home':
+        return homeTeam;
+      case 'away':
+        return awayTeam;
+      default:
+        return key;
     }
-  
-    // console?.log(data, title, showLiquidity);
-  
-    const getTeamName = (key) => {
-      switch (key?.toLowerCase()) {
-        case 'home':
-          return homeTeam;
-        case 'away':
-          return awayTeam;
-        default:
-          return key;
-      }
+  };
+
+  const handleBetSelection = (key, value) => {
+    // Extract betting data from the value object
+    const betData = {
+      odds: Array.isArray(value) ? value[0][0] : (typeof value === 'object' ? value.odds : value),
+      liquidity: Array.isArray(value) ? value[0][1] : (typeof value === 'object' ? value.side0?.[0]?.[1] : 0),
+      mkt: value.mkt || (key.toLowerCase() === 'home' ? 1 : key.toLowerCase() === 'away' ? 3 : 2),
+      side: 0, // Default to side0
+      player: "",
+      selection: getTeamName(key)
     };
-  
+
+    setSelectedBet(betData);
+    setIsBetModalOpen(true);
+  };
+
+  const getBetButton = (key, value) => {
+    const odds = Array.isArray(value) ? value[0][0] : (typeof value === 'object' ? value.odds : value);
+    const isDisabled = !odds || odds === 0;
+
     return (
-      <div className="mb-4 mt-4 md:mt-0 rounded-lg overflow-hidden">
-        <div className="text-sm text-white font-semibold md:p-3 p-1 flex items-center">
-          <span className="text-[#7D7D7D] opacity-65 text-2xl">&bull;</span>
-          <span className="ml-1 font-poppins opacity-65">{title}</span>
-          {showLiquidity && (
-            <div className="ml-auto bg-white bg-opacity-10 px-2 md:px-4 py-1 flex items-center gap-1 rounded-full">
-              <button className="md:text-xs text-[10px] text-white">Show Liquidity</button>
-              <MdOutlineInsertLink color="white" />
-            </div>
-          )}
-        </div>
-        <div className="md:p-4 ">
-          <div className="flex justify-center items-center gap-2 md:gap-20">
-            {Object?.entries(data)?.map(([key, value]) => (
-              <div key={key} className="text-center">
-                <div className="text-xs text-white">{getTeamName(key)}</div>
-                <div className="bg-[#132C42] w-[94px] text-white p-2 rounded mt-1">
-                  {Array?.isArray(value) ? value[0][0] : (typeof value === 'object' ? value?.odds : value)}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <button
+        onClick={() => handleBetSelection(key, value)}
+        disabled={isDisabled}
+        className={`
+          w-[94px] p-2 rounded mt-1 text-center transition-all duration-200
+          ${isDisabled 
+            ? 'bg-neutral-800 text-neutral-500 cursor-not-allowed' 
+            : 'bg-[#132C42] text-white hover:bg-[#1a3b59] active:bg-[#0f2231] cursor-pointer'
+          }
+        `}
+      >
+        {odds?.toFixed(2) || '-'}
+      </button>
     );
   };
- 
+
+  return (
+    <div className="mb-4 mt-4 md:mt-0 rounded-lg overflow-hidden">
+      <div className="text-sm text-white font-semibold md:p-3 p-1 flex items-center">
+        <span className="text-[#7D7D7D] opacity-65 text-2xl">&bull;</span>
+        <span className="ml-1 font-poppins opacity-65">{title}</span>
+        {showLiquidity && (
+          <div className="ml-auto bg-white bg-opacity-10 px-2 md:px-4 py-1 flex items-center gap-1 rounded-full">
+            <button className="md:text-xs text-[10px] text-white">Show Liquidity</button>
+            <MdOutlineInsertLink color="white" />
+          </div>
+        )}
+      </div>
+      
+      <div className="md:p-4">
+        <div className="flex justify-center items-center gap-2 md:gap-20">
+          {Object.entries(data).map(([key, value]) => (
+            <div key={key} className="text-center">
+              <div className="text-xs text-white mb-1">{getTeamName(key)}</div>
+              {getBetButton(key, value)}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <BetModal
+        isOpen={isBetModalOpen}
+        onClose={() => {
+          setIsBetModalOpen(false);
+          setSelectedBet(null);
+        }}
+        selectedOdd={selectedBet}
+        eventDetails={{
+          ...eventDetails,
+          homeTeam,
+          awayTeam
+        }}
+      />
+    </div>
+  );
+};
 
 
 
