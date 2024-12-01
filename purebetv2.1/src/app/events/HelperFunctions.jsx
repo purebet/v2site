@@ -5,6 +5,33 @@ import { FaAngleDown } from "react-icons/fa6";
 import { useState } from 'react';
 import BetModal from './BetModal';
 
+const MarketContainer = ({ title, showLiquidity, children }) => (
+  <div className="mb-4 rounded-lg overflow-hidden">
+    <div className="text-sm text-white font-semibold p-3 flex items-center">
+      <span className="text-[#7D7D7D] opacity-65 text-2xl">&bull;</span>
+      <span className="ml-1 font-poppins opacity-65">{title}</span>
+      {showLiquidity && (
+        <div className="ml-auto bg-white bg-opacity-10 px-2 md:px-4 py-1 flex items-center gap-1 rounded-full">
+          <button className="md:text-xs text-[10px] text-white">Show Liquidity</button>
+          <MdOutlineInsertLink color="white" />
+        </div>
+      )}
+    </div>
+    <div className="p-4">
+      {children}
+    </div>
+  </div>
+);
+
+const MarketItem = ({ label, value }) => (
+  <div className="text-center">
+    <div className="text-xs text-gray-500">{label}</div>
+    <div className="bg-[#334155] text-white p-2 rounded mt-1">
+      {Array.isArray(value) ? value[0][0] : (typeof value === 'object' ? value.odds : value)}
+    </div>
+  </div>
+);
+
 const BTTS = ({ title, data, showLiquidity = false }) => {
   if (!data || !data?.side0 || !data?.side1) {
     return null;
@@ -346,32 +373,131 @@ const FullTime = ({ title, data, showLiquidity = false, homeTeam, awayTeam, even
 //   };
 
 
-const BothTeamstoScoreandTotal = ({ title, data, showLiquidity = false }) => {
-  if (!data || data.length === 0) {
+// const BothTeamstoScoreandTotal = ({ title, data, showLiquidity = false }) => {
+//   if (!data || data.length === 0) {
+//     return null;
+//   }
+//   console.log(data, title, showLiquidity);
+
+//   const market = data[0]; // Assuming we're using the first market
+//   console.log('BTTS+OU Data:', data);
+
+//   return (
+//     // <MarketContainer title={title} showLiquidity={showLiquidity}>
+//     //   <div className="grid grid-cols-2 gap-2">
+//     //     <div>
+//     //       <h3 className="text-white font-semibold mb-2">Yes</h3>
+//     //       <div className="grid grid-cols-2 gap-2">
+//     //         <MarketItem label={`Over ${market.line}`} value={market.yes.over.side0[0][0]} />
+//     //         <MarketItem label={`Under ${market.line}`} value={market.yes.under.side0[0][0]} />
+//     //       </div>
+//     //     </div>
+//     //     <div>
+//     //       <h3 className="text-white font-semibold mb-2">No</h3>
+//     //       <div className="grid grid-cols-2 gap-2">
+//     //         <MarketItem label={`Over ${market.line}`} value={market.no.over.side0[0][0]} />
+//     //         <MarketItem label={`Under ${market.line}`} value={market.no.under.side0[0][0]} />
+//     //       </div>
+//     //     </div>
+//     //   </div>
+//     // </MarketContainer>
+//     <MarketContainer title={title} showLiquidity={showLiquidity}>
+//       {data.map((market, index) => (
+//         <div key={index} className="mb-4">
+//           <div className="text-white text-sm mb-2">Line {market?.line}</div>
+//           <div className="grid grid-cols-2 gap-2">
+//             <div>
+//               <h3 className="text-white font-semibold mb-2">Yes</h3>
+//               <div className="grid grid-cols-2 gap-2">
+//                 {market?.yes?.over?.side0 && (
+//                   <MarketItem 
+//                     label={`Over ${market?.line}`} 
+//                     value={market?.yes?.over?.side0[0][0]} 
+//                   />
+//                 )}
+//                 {market?.yes?.under?.side0 && (
+//                   <MarketItem 
+//                     label={`Under ${market?.line}`} 
+//                     value={market?.yes?.under?.side0[0][0]} 
+//                   />
+//                 )}
+//               </div>
+//             </div>
+//             <div>
+//               <h3 className="text-white font-semibold mb-2">No</h3>
+//               <div className="grid grid-cols-2 gap-2">
+//                 {market?.no?.over?.side0 && (
+//                   <MarketItem 
+//                     label={`Over ${market?.line}`} 
+//                     value={market?.no?.over?.side0[0][0]} 
+//                   />
+//                 )}
+//                 {market?.no?.under?.side0 && (
+//                   <MarketItem 
+//                     label={`Under ${market?.line}`} 
+//                     value={market?.no?.under?.side0[0][0]} 
+//                   />
+//                 )}
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       ))}
+//     </MarketContainer>
+//   );
+// };
+
+const BothTeamstoScoreandTotal = ({ title, data, showLiquidity = false, eventDetails }) => {
+  // First check if data exists and has BTTS+OU market
+  if (!data || !data['BTTS+OU'] || !Array.isArray(data['BTTS+OU'])) {
     return null;
   }
-  console.log(data, title, showLiquidity);
 
-  const market = data[0]; // Assuming we're using the first market
+  const bttsOuMarkets = data['BTTS+OU'];
 
   return (
     <MarketContainer title={title} showLiquidity={showLiquidity}>
-      <div className="grid grid-cols-2 gap-2">
-        <div>
-          <h3 className="text-white font-semibold mb-2">Yes</h3>
+      {bttsOuMarkets.map((market, index) => (
+        <div key={index} className="mb-4">
+          <div className="text-white text-sm mb-2">Line {market?.line}</div>
           <div className="grid grid-cols-2 gap-2">
-            <MarketItem label={`Over ${market.line}`} value={market.yes.over.side0[0][0]} />
-            <MarketItem label={`Under ${market.line}`} value={market.yes.under.side0[0][0]} />
+            <div>
+              <h3 className="text-white font-semibold mb-2">Yes</h3>
+              <div className="grid grid-cols-2 gap-2">
+                {market?.yes?.over?.side0 && (
+                  <MarketItem 
+                    label={`Over ${market?.line}`} 
+                    value={market?.yes?.over?.side0[0][0]} 
+                  />
+                )}
+                {market?.yes?.under?.side0 && (
+                  <MarketItem 
+                    label={`Under ${market?.line}`} 
+                    value={market?.yes?.under?.side0[0][0]} 
+                  />
+                )}
+              </div>
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-2">No</h3>
+              <div className="grid grid-cols-2 gap-2">
+                {market?.no?.over?.side0 && (
+                  <MarketItem 
+                    label={`Over ${market?.line}`} 
+                    value={market?.no?.over?.side0[0][0]} 
+                  />
+                )}
+                {market?.no?.under?.side0 && (
+                  <MarketItem 
+                    label={`Under ${market?.line}`} 
+                    value={market?.no?.under?.side0[0][0]} 
+                  />
+                )}
+              </div>
+            </div>
           </div>
         </div>
-        <div>
-          <h3 className="text-white font-semibold mb-2">No</h3>
-          <div className="grid grid-cols-2 gap-2">
-            <MarketItem label={`Over ${market.line}`} value={market.no.over.side0[0][0]} />
-            <MarketItem label={`Under ${market.line}`} value={market.no.under.side0[0][0]} />
-          </div>
-        </div>
-      </div>
+      ))}
     </MarketContainer>
   );
 };

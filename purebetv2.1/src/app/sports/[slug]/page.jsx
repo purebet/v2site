@@ -47,7 +47,8 @@ export default function Component() {
           {renderMainContent()}
         </div>
         <div className={` hidden md:block lg:block`}>
-          <WalletDataCard />
+          {/* <WalletDataCard /> */}
+          <div className='w-full bg-white'></div>
         </div>
       </div>
       <div className="md:hidden">   <Bottomnav /></div>  

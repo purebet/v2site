@@ -13,6 +13,7 @@ import sportsIcons from '../utils/sportsIcons';
 import getFlagUrl from '../utils/getFlagUrl';
 import BettingMarketsComponent from './BettingMarketsComponent';
 import BettingEvents from './BettingEvents';
+import BettingSidebar from './BettingSidebar';
 export default function Component() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [eventDetails, setEventDetails] = useState(null);
@@ -139,7 +140,10 @@ export default function Component() {
           )}
         </div>
         <div className={` hidden md:block lg:block`}>
-          <WalletDataCard />
+          {/* <WalletDataCard /> */}
+          {/* <div className='w-full'> */}
+      <BettingSidebar/>
+          {/* </div> */}
         </div>
       </div>
       <div className="md:hidden">   <Bottomnav /></div>  
