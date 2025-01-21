@@ -9,6 +9,7 @@ const sportName = {
     Combat: '22',
     Politics: 'politics',
     Cryptocurrency: 'cryptocurrency',
+    "American football": '15'
   };
   
   export default sportName;
