@@ -53,7 +53,7 @@ console.log(leagues)
                 <div>
 
                   <h2 className="text-lg font-semibold flex justify-center items-center">
-                  {getFlagUrl(league.leagueName) &&  <img src={getFlagUrl(league.leagueName)} alt={league.leagueName} className="w-6 h-6" /> }
+                  {getFlagUrl(league.country) &&  <img src={getFlagUrl(league.country)} alt={league.country} className="w-6 h-6" /> }
                  {" "} &nbsp;   {league.leagueName}
                     </h2>
                   <p className="text-sm text-muted-foreground">{league.events.length} events</p>
