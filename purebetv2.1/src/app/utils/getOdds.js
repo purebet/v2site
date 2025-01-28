@@ -1,4 +1,5 @@
 export default function getOdds (event) {
+  console.log(event)
     let period = event.periods["1"]; // Default to period "1" (Full Time)
     if (!period || !period["FT"]) {
       period = event.periods["0"]; // Fallback to period "0" (Money Line)

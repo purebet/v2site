@@ -17,7 +17,7 @@ export default function Sports() {
   const [expandedLeagues, setExpandedLeagues] = useState({});
 
   const nickname = hashWallet("Premier League");
-  console.log(nickname); // Should log a generated nickname
+  console.log(nickname);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;

@@ -34,7 +34,7 @@ export default function Component() {
         setEventDetails(details);
         
         if (details && details.league) {
-          const league = await getLeagueName(details.league);
+          const league = await getLeagueName([details.league, details.country]);
           setLeagueName(league);
         }
       }
@@ -43,7 +43,7 @@ export default function Component() {
     fetchEventDetails();
   }, [event]);
 
-  const normalizedSportName = eventDetails 
+  const normalizedSportName = eventDetails
     ? Object.keys(sportName).find(key => sportName[key] === eventDetails.sport.toString()).toLowerCase().replace(/\s+/g, '') 
     : '';
   const sport = sportsIcons[normalizedSportName] || {};
@@ -117,11 +117,11 @@ export default function Component() {
       >
         {eventDetails.eventName}
       </div>    </div>
-              {/* league name */}
-              {leagueName && getFlagUrl(leagueName) && (
+              {console.log(leagueName)}
+              {leagueName[0] && getFlagUrl(leagueName[1]) && (
         <div className='flex p-5 pt-0 pb-0 mx-4  items-center text-[9px] md:text-[15px] mt-4 md:mx-8'>
-          <img src={getFlagUrl(leagueName)} alt={leagueName} className="w-6 h-6 mr-2" />
-          <div className='text-[#7D7D7D]'>{leagueName}</div>
+          <img src={getFlagUrl(leagueName[1])} alt={leagueName[1]} className="w-6 h-6 mr-2" />
+          <div className='text-[#7D7D7D]'>{leagueName[0]}</div>
           <span className="text-[#7D7D7D] text-2xl mx-2">&bull;</span>
          
           <div> <span className=" text-neutral-400 mx-2">
