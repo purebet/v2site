@@ -7,7 +7,10 @@ export default function Topleagues() {
     <>
       <div className="flex overflow-x-auto max-w-[21rem] md:max-w-full gap-5 mt-2 max-md:flex-nowrap">
         {repeatedMatches.map((match, index) => (
-          <div key={index} className="flex flex-col justify-center p-2.5 rounded-md border border-solid shadow-sm border-zinc-800 min-w-fit">
+          <div
+            key={index}
+            className="flex flex-col justify-center p-2.5 rounded-md border border-solid shadow-sm border-zinc-800 min-w-fit"
+          >
             <div className="flex gap-1">
               <img
                 loading="lazy"
