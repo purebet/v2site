@@ -50,7 +50,7 @@ const MarketContainer = ({ title, showLiquidity, children }) => (
   <div className="mb-4 rounded-lg overflow-hidden">
     <div className="text-sm text-white font-semibold p-3 flex items-center">
       <span className="text-[#7D7D7D] opacity-65 text-2xl">&bull;</span>
-      <span className="ml-1 font-poppins opacity-65">{title}</span>
+      <span className="ml-1 font-poppins opacity-65 ">{title}</span>
       {showLiquidity && <LiquidityButton />}
     </div>
     <div className="p-4">{children}</div>
@@ -60,7 +60,7 @@ const MarketContainer = ({ title, showLiquidity, children }) => (
 const MarketItem = ({ label, value }) => (
   <div className="text-center">
     <div className="text-xs text-gray-500">{label}</div>
-    <div className="bg-[#334155] text-white p-2 rounded mt-1">
+    <div className="bg-[#132C42] text-white p-2 rounded mt-1">
       {Array.isArray(value)
         ? value[0][0]
         : typeof value === "object"
@@ -619,7 +619,7 @@ const BettingEvents = ({ eventDetails }) => {
             )}
             {getMarketData("BTTS", period) && (
               <div>
-                <BettingMarket
+                <BTTS
                   title="Both Teams to Score"
                   data={getMarketData("BTTS", period)}
                   {...commonProps}
