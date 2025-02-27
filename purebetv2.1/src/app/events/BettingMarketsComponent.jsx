@@ -12,6 +12,14 @@ import {
   TeamOverUnder,
   CorrectScore,
 } from "./HelperFunctions";
+import { DropdownMenuIcon } from "@radix-ui/react-icons";
+
+const PROP_TYPE_MAP = {
+  goals: "Goals",
+  points: "Points",
+  rebounds: "Rebounds",
+  assists: "Assists",
+};
 
 const SPORT_PERIODS = {
   // Basketball (id: 4)
@@ -78,26 +86,53 @@ const LiquidityButton = () => (
 );
 
 const PlayerProps = ({ title, data, showLiquidity = false }) => {
-  if (!data || Object.keys(data).length === 0) {
-    return null;
-  }
+  const itemsToShowInitially = 5; // Number of items to show initially for each prop type
+
+  if (!data || Object.keys(data).length === 0) return null;
 
   return (
     <MarketContainer title={title} showLiquidity={showLiquidity}>
-      {Object.entries(data).map(([propType, players]) => (
-        <div key={propType} className="mb-4">
-          <h3 className="text-white font-semibold mb-2">{propType}</h3>
-          <div className="grid grid-cols-3 gap-2">
-            {Object.entries(players).map(([playerName, props]) => (
-              <PlayerPropItem
-                key={playerName}
-                playerName={playerName}
-                props={props}
-              />
-            ))}
+      {Object.entries(data).map(([propType, playerProp]) => {
+        const [expanded, setExpanded] = useState(false);
+
+        const toggleExpand = () => {
+          setExpanded(!expanded);
+        };
+
+        const playerEntries = Object.entries(playerProp);
+        const visibleEntries = expanded
+          ? playerEntries
+          : playerEntries.slice(0, itemsToShowInitially);
+
+        return (
+          <div key={propType} className="mb-6 relative">
+            <div className="flex items-center justify-between mb-3 ml-2">
+              <h3 className="text-white text-sm font-semibold">
+                {PROP_TYPE_MAP[propType] || propType}
+              </h3>
+              {playerEntries.length > itemsToShowInitially && (
+                <button
+                  onClick={toggleExpand}
+                  className="ml-auto bg-white bg-opacity-10 px-4 py-1 flex items-center gap-1 rounded-full text-xs text-white focus:outline-none"
+                >
+                  {expanded ? "Show Less" : "Show More"}
+                </button>
+              )}
+            </div>
+            <div className="flex flex-wrap gap-12">
+              {visibleEntries.map(([player, props]) => (
+                <div key={player}>
+                  <PlayerPropItem
+                    playerName={playerProp[player].playerName}
+                    props={props}
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="w-full mt-5 bg-[#FFFFFF26] h-[1px]"></div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </MarketContainer>
   );
 };
@@ -113,28 +148,53 @@ const PlayerProps = ({ title, data, showLiquidity = false }) => {
 //   </div>
 // );
 
-const PlayerPropItem = ({ playerName, props }) => (
-  <div className="text-center">
-    <div className="text-xs text-gray-500">{playerName}</div>
-    {Object.entries(props).map(([line, odds]) => {
-      // Handle different odds data structures
-      const oddValue =
-        Array.isArray(odds) && Array.isArray(odds[0])
-          ? odds[0][0]
-          : Array.isArray(odds)
-          ? odds[0]
-          : typeof odds === "object" && odds?.side0
-          ? odds.side0[0][0]
-          : odds;
+const PlayerPropItem = ({ playerName, props }) => {
+  console.log(playerName, "Player name");
 
-      return (
-        <div key={line} className="bg-[#334155] text-white p-2 rounded mt-1">
-          {`${line}: ${oddValue || "N/A"}`}
-        </div>
-      );
-    })}
-  </div>
-);
+  // Ensure props is an array and map through it
+  const propLines = Array.isArray(props) ? props : [props];
+
+  return (
+    <div className="w-full flex flex-col justify-center align-middle items-center">
+      <div className="text-xs text-gray-500 mb-1 text-center">{playerName}</div>
+      <div className=" gap-2">
+        {propLines.map((prop, index) => {
+          const { line, side0, side1 } = prop;
+          const overOdds = side0?.[0]?.[0]?.toFixed(2) || "N/A";
+          const underOdds = side1?.[0]?.[0]?.toFixed(2) || "N/A";
+
+          return (
+            <div
+              key={index}
+              className=" flex flex-col justify-center align-middle items-center gap-3 text-white p-2 rounded text-center"
+            >
+              <div className="text-xs  text-gray-300">Line {line}</div>
+              <div className="bg-[#132C42] w-[94px] text-white p-2 rounded mt-1">
+                {" "}
+                {overOdds}
+              </div>
+              <div className="bg-[#132C42] w-[94px] text-white p-2 rounded mt-1">
+                {" "}
+                {underOdds}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+// const PlayerPropItem = ({ playerName, props }) => (
+//   <div className="text-center">
+//     <div className="text-xs text-gray-500">{playerName}</div>
+//     {Object.entries(props).map(([line, odds]) => (
+//       <div key={line} className="bg-[#334155] text-white p-2 rounded mt-1">
+//         {`${line}: ${odds[0][0]}`}
+//       </div>
+//     ))}
+//   </div>
+// );
 
 // const BettingEvents = ({ eventDetails }) => {
 //   const [selectedMarket, setSelectedMarket] = useState('Full Time');
@@ -542,23 +602,22 @@ const BettingEvents = ({ eventDetails }) => {
   const getPlayerProps = () => {
     const primaryPeriod = getAppropriateFullTimePeriod(sportId);
     const fallbackPeriod = primaryPeriod === "0" ? "1" : "0";
-
     const periodData = eventDetails?.periods?.[primaryPeriod];
     const fallbackData = eventDetails?.periods?.[fallbackPeriod];
-
     const props = periodData?.playerProps || fallbackData?.playerProps;
+
     if (!props) return null;
 
     return Object.entries(props).reduce((acc, [propType, players]) => {
       acc[propType] = Object.entries(players).reduce(
-        (playerAcc, [playerName, props]) => {
-          playerAcc[playerName] = Object.entries(props).reduce(
-            (lineAcc, [line, odds]) => {
-              lineAcc[line] = odds;
-              return lineAcc;
-            },
-            {}
-          );
+        (playerAcc, [playerName, playerProps]) => {
+          // Convert array-based props to object keyed by line
+          playerAcc[playerName] = Array.isArray(playerProps)
+            ? playerProps.reduce((lineAcc, { line, odds }) => {
+                lineAcc[line] = odds;
+                return lineAcc;
+              }, {})
+            : playerProps; // Fallback if already an object
           return playerAcc;
         },
         {}
