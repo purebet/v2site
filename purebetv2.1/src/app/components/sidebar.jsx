@@ -45,8 +45,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         // Fetching fav leagues here (api/favourites needed here to fetch the fav leagues. as of now i am assuming that that response i will get will be fav leagues )
 
         const filteredTopLeagues = TopLeagues.filter(
-          (league) =>
-            league.isTopLeague === true || league.isSportTopLeague === true
+          (league) => league.isTopLeague === true
         );
         console.log(filteredTopLeagues, "this is top leagues");
 

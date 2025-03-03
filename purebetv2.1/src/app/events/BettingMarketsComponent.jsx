@@ -24,10 +24,10 @@ const PROP_TYPE_MAP = {
 const SPORT_PERIODS = {
   // Basketball (id: 4)
   4: {
-    FULL_TIME: "0", // Including OT
-    REGULATION: "1", // Regular time
+    FULL_TIME: "1", // Changed from "0" to "1" to use regulation period
+    REGULATION: "1",
     HALF_TIME: "2",
-    QUARTERS: ["11", "12", "13", "14"], // Q1, Q2, Q3, Q4
+    QUARTERS: ["11", "12", "13", "14"],
   },
   // Soccer/Football (id: 15, 29)
   DEFAULT: {
@@ -822,12 +822,18 @@ const MarketSelector = ({
   const halfTimePeriod = getAppropriateHalfTimePeriod(sportId);
 
   // Check data availability for each market type
-  const hasFullTime = eventDetails?.periods?.[fullTimePeriod];
+  const hasFullTime =
+    eventDetails?.periods?.[fullTimePeriod] ||
+    eventDetails?.periods?.[fullTimePeriod === "1" ? "0" : "1"];
+
+  const hasTeamTotals =
+    eventDetails?.periods?.[fullTimePeriod]?.TOU ||
+    eventDetails?.periods?.[fullTimePeriod === "1" ? "0" : "1"]?.TOU;
   const hasHalfTime = eventDetails?.periods?.[halfTimePeriod];
-  const hasTeamTotals = hasFullTime?.TOU;
+
   const hasPlayerProps =
-    hasFullTime?.playerProps ||
-    eventDetails?.periods?.[fullTimePeriod === "0" ? "1" : "0"]?.playerProps;
+    eventDetails?.periods?.[fullTimePeriod]?.playerProps ||
+    eventDetails?.periods?.[fullTimePeriod === "1" ? "0" : "1"]?.playerProps;
 
   // Create array of available markets
   const availableMarkets = [

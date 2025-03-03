@@ -10,7 +10,7 @@ export default function Home() {
     <div className="bg-black md:w-[63vw] w-[92vw]   overflow-hidden overflow-y-auto border-2 md:mx-3 md:m-0 m-4 rounded-lg border-[#222222] text-white  max-h-screen min-h-screen">
       <div className="flex flex-col py-3.5 pl-6  max-md:pl-5 max-md:max-w-full">
         <div className="text-base  bg-gradient-to-b from-white to-black font-semibold text-transparent bg-clip-text max-md:max-w-full">
-          Top Leagues
+          Top Events
         </div>
         <Topleagues />
       </div>
